@@ -1,17 +1,13 @@
 /******Tic Tac Toe Game******/
 
 
- let mainDiv = document.createElement('div')  
- document.body.appendChild(mainDiv)
- mainDiv.classList.add('mainContainer')
  
-
  
 
 
 const gameBoardObject = () => {
 
-  const board = [{p1:'X'}, {p2:''}, {p3:''},
+  const board = [{p1:''}, {p2:''}, {p3:''},
                  
                  {p4:''}, {p5:''}, {p6:''},
                  
@@ -21,10 +17,18 @@ const gameBoardObject = () => {
 
 }; 
 
+/*
+let mainDiv = document.createElement('div')  
+ document.body.appendChild(mainDiv)
+ mainDiv.classList.add('mainContainer')
+
 const board1 = gameBoardObject() /* next two lines are just accessing the gameboard object and displaying 
-* them to div created above************* */
+                                 //* them to div created above************* 
 
 mainDiv.textContent = [board1.board[0].p1,board1.board[0].p1].join('')//used join method to remove comma between these from the array display
+
+*/
+ 
 
 
   
