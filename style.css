@@ -12,4 +12,15 @@
     display: grid;
     grid-template-columns: repeat( 3, minmax(3rem, 5rem) );
     grid-template-rows: repeat( 3, minmax(3rem, 5rem) );
+    justify-content: center;
+    
+}
+
+.ticTacToeGridContainer p{
+
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    font-size: 4rem;
+    
 }

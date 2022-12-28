@@ -15,29 +15,55 @@
 
     <section>
         <article class = 'startGameButtonContainer'>
-          <button class = 'startGameButton'>START NEW GAME <br>Press here!</button>
-        </div>
+        
 
         <div>
           <form class = 'gameNumberChoiceContainer'>
             <!--Start button and labels and inputs will be replaced by number of games 
                 left to play and how many have been played-->
             <label for = "gameNumberInput">How Many Games?</label>
-            <input type = "number" name = "gameNumberInput">
+            <input type = "number" name = "gameNumberInput" class = 'numberOfRoundsChoice'>
           
           </form>
+
+          
         </article>
 
             
         <article class = 'playerNamesConfigContainer'>  <!--Names will be replaced by h1 after being entered.-->
           
-          <form class = 'playerNameInputs'>
+          <div class = 'playerNameInputs'>
+            <form class = 'player1Inputs'>
+            <div>
             <label for = 'player1Name'>Player 1 Name is...</label>
-            <input type = 'text' name = 'player1Name'>
-          
+            <input type = 'text' name = 'player1Name' class = 'p1Name'>
+            </div>
+
+            <label for = 'p1xOrO'>X or O?<label>
+                <label for = 'p1xOrO'>X<label>
+            <input type = 'radio' name = 'p1xOrO' value = 'X'>
+            <label for = 'p1xOrO'>O<label>
+                <input type = 'radio' name = 'p1xOrO' value = 'O'>
+            </form>
+            
+          <form class = 'player2Inputs'>
+            <div>
             <label for ='player2Name'>Player 2 Name is...</label>
-            <input type = 'text' name = 'player2Name'>
-          </form>
+            <input type = 'text' name = 'player2Name' class = 'p2Name'>
+        <div>
+            
+            <label for = 'p2xOrO'>X or O?<label>
+                <label for = 'p2xOrO'>X<label>
+            <input type = 'radio' name = 'p2xOrO' value = 'X'>
+            <label for = 'p2xOrO'>O<label>
+                <input type = 'radio' name = 'p2xOrO' value = 'O'>
+                
+            </div>
+        </form>
+
+        </div>
+        <button class = 'startGameButton'>START NEW GAME </button>
+      </div>
 
         </article>
 
@@ -65,7 +91,7 @@
     
     <main>
         
-        <article class = 'ticTacToeContainer'>
+        <article class = 'ticTacToeGridContainer'>
             <p>x</p>
             <p>o</p>
             <p>x</p>
