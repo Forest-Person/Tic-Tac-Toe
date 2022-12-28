@@ -1,8 +1,15 @@
-/* Remove padding and margin */ 
+/* Remove padding and margin for default styles */ 
 *  
     { 
     margin: 0; 
     padding: 0; 
     border: 0; 
     box-sizing: border-box;
+    border:2px solid red
+}
+
+.ticTacToeGridContainer {
+    display: grid;
+    grid-template-columns: repeat( 3, minmax(3rem, 5rem) );
+    grid-template-rows: repeat( 3, minmax(3rem, 5rem) );
 }
