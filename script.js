@@ -29,12 +29,21 @@ mainDiv.textContent = [board1.board[0].p1,board1.board[0].p1].join('')//used joi
 
 */
 
-const startButton = document.querySelector('.startGameButton')
+
+const PlayerObject = (name,playerSymbol) => {
+
+    name = name; //the name object will be filled by an html form
+    
+    playerSymbol = playerSymbol; // will be chosen by the game flow
+    
+    let scoreCount = 0;  // score is when a game is won
+    let tieCount = 0 ;   // tie is when no one wins a game
+  return {name,playerSymbol}
+      
+    }
 
 
-
-
-const newGameConfig = (event) => {
+const newGameConfig = (event) => { //this function gets all the player input values on start button press
 
     event.preventDefault()
     
@@ -44,37 +53,37 @@ const newGameConfig = (event) => {
 
     const player2Name = document.querySelector('.p2Name').value;
 
-    const p1Symbol = document.querySelector('input[name="p1xOrO"]:checked').value;
+    const p1Symbol = document.querySelector('input[name="p1xOrO"]:checked').value;  //these check for the checked radio button plater inputs
 
     const p2Symbol = document.querySelector('input[name="p2xOrO"]:checked').value;
 
     if (p1Symbol === p2Symbol) {
 
-        return alert('Players cannot choose same symbol')
+        return alert('Players cannot choose same symbol')//do not allow from submisison if players choose same value
     }
 
-    document.querySelector('.player1Inputs').reset()
-    document.querySelector('.player2Inputs').reset()
+    const player1 = PlayerObject(player1Name, p1Symbol)
 
-    return console.log(numberOfGames,player1Name,player2Name,p1Symbol,p2Symbol);
+    const player2 = PlayerObject(player2Name, p2Symbol)
+
+    document.querySelector('.player1Inputs').reset()
+    document.querySelector('.player2Inputs').reset()//reset form values on press of start button
+    document.querySelector('.gameNumberChoiceContainer').reset() //make game numbers choice form reset
+
+    
+    
+    
+    return console.log(player1.name,player1.playerSymbol,player2.name,player2.playerSymbol)
 
 };
 
 
-startButton.addEventListener('click' , newGameConfig)
+//********** EVENT LISTENER ***********//
 
+const startButton = document.querySelector('.startGameButton') // button that starts the whole game and gets player input values
 
-const playerObject = () => {
+startButton.addEventListener('click' , newGameConfig) // adds all the form info into objects
 
-    const name = ''; //the name object will be filled by an html form
-    
-    let playerSymbol = ''; // will be chosen by the game flow
-    
-    let scoreCount = 0;  // score is when a game is won
-    let tieCount = 0 ;   // tie is when no one wins a game
-  
-      
-    }
 
 
 
