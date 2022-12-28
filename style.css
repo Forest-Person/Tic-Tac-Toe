@@ -1,10 +1,8 @@
-body, html {
-    
+/* Remove padding and margin */ 
+*  
+    { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
     box-sizing: border-box;
-    margin:0;
-    padding:0;
-}
-
-*{
-    border: 2px solid red;
 }
