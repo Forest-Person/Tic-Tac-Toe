@@ -1,10 +1,6 @@
 /******Tic Tac Toe Game******/
 
 
- 
- 
-
-
 const gameBoardObject = () => {
 
   const board = [{p1:''}, {p2:''}, {p3:''},
@@ -17,6 +13,19 @@ const gameBoardObject = () => {
 
 }; 
 
+
+(           //IIFE that upon click will create the player config seciton. when startnewgame button is clicked the section and new game button go away.
+    ()=>{
+
+        document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
+        document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'non'
+
+        document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
+            document.querySelector('.playerNamesConfigContainer').style.display = 'block';
+            document.querySelector('.newGameButton').style.display = 'none';
+        })
+    }
+)()
 
 
 
@@ -36,16 +45,18 @@ const PlayerObject = (nameChoice,symbol) => {
     };
 }
 
-//as per armars advice on stackoverflow it is okay to create playerobject varibales
+//as per "Barmars" advice on stackoverflow it is okay to create playerobject varibales
 //using let but leave them un initizliized until the newgame config function call//
 //where they become the actual playerobject.
 
-let player1, player2
+let player1, player2 //player1 and two objects storing chosen names and scores
+
+let numberOfGames = document.querySelector('.numberOfRoundsChoice').value
 
 
 function newGameConfig()  {
 
-    let numberOfGames = document.querySelector('.numberOfRoundsChoice').value
+    
 
     let  player1Name =document.querySelector('.p1Name').value
 
@@ -66,6 +77,10 @@ function newGameConfig()  {
     document.querySelector('.player2Inputs').reset();//reset form values on press of start button
     document.querySelector('.gameNumberChoiceContainer').reset() ;//make gameNumbersChoice form reset
     
+    
+    document.querySelector('.playerNamesConfigContainer').style.display = 'none' //remove player names config container from dom
+
+    document.querySelector('.playerScoreBoard').style.display = 'block'
     
 }
 

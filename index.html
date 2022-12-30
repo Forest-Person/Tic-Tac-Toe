@@ -14,23 +14,12 @@
     </header>
 
     <section>
-        <article class = 'startGameButtonContainer'>
-        
-
-        <div>
-          <form class = 'gameNumberChoiceContainer'>
-            <!--Start button and labels and inputs will be replaced by number of games 
-                left to play and how many have been played-->
-            <label for = "gameNumberInput">How Many Games?</label>
-            <input type = "number" name = "gameNumberInput" class = 'numberOfRoundsChoice'>
-          
-          </form>
-
-          
-        </article>
-
+       
+        <div class = 'newGameButton'>
+            <button>New Game</button>
+        </div>
             
-        <article class = 'playerNamesConfigContainer'>  <!--Names will be replaced by h1 after being entered.-->
+        <article class = 'playerNamesConfigContainer' >  <!--Names will be replaced by h1 after being entered.-->
           
           <div class = 'playerNameInputs'>
             <form class = 'player1Inputs'>
@@ -59,19 +48,33 @@
                 <input type = 'radio' name = 'p2xOrO' value = 'O'>
                 
             </div>
+            
         </form>
+        <form class = 'gameNumberChoiceContainer'>
+            <!--Start button and labels and inputs will be replaced by number of games 
+                left to play and how many have been played-->
+            <label for = "gameNumberInput">How Many Games?</label>
+            <input type = "number" name = "gameNumberInput" class = 'numberOfRoundsChoice'>
+          
+          </form>
 
         </div>
         <button class = 'startGameButton'>START NEW GAME </button>
+
+
       </div>
 
         </article>
+
+        <div>
+            <button>Restart</button>
+        </div>
 
     </section>
 
     <section>
 
-        <article>
+        <article class = 'playerScoreBoard'>
             <div>
                 <p>Player 1 Score</p> 
                 <p>Score: </p> 
