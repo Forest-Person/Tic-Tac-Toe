@@ -17,78 +17,81 @@ const gameBoardObject = () => {
 
 }; 
 
-/*
-let mainDiv = document.createElement('div')  
- document.body.appendChild(mainDiv)
- mainDiv.classList.add('mainContainer')
-
-const board1 = gameBoardObject() /* next two lines are just accessing the gameboard object and displaying 
-                                 //* them to div created above************* 
-
-mainDiv.textContent = [board1.board[0].p1,board1.board[0].p1].join('')//used join method to remove comma between these from the array display
-
-*/
 
 
-const PlayerObject = (name,playerSymbol) => {
 
-    name = name; //the name object will be filled by an html form
+const PlayerObject = (nameChoice,symbol) => {
+    scoreCount = 0 // score is when a game is won
+    tieCount = 0    // tie is when no one wins a game
     
-    playerSymbol = playerSymbol; // will be chosen by the game flow
+    return{
+     
+    nameChoice, //the name object will be filled by an html form
     
-    let scoreCount = 0;  // score is when a game is won
-    let tieCount = 0 ;   // tie is when no one wins a game
-  return {name,playerSymbol}
+    symbol, // will be chosen by the game flow
+    
+    scoreCount,
+
+    tieCount
+    };
+}
+
+//as per armars advice on stackoverflow it is okay to create playerobject varibales
+//using let but leave them un initizliized until the newgame config function call//
+//where they become the actual playerobject.
+
+let player1, player2
+
+
+function newGameConfig()  {
+
+    let numberOfGames = document.querySelector('.numberOfRoundsChoice').value
+
+    let  player1Name =document.querySelector('.p1Name').value
+
+    let  player2Name = document.querySelector('.p2Name').value
+
+    let  p1Symbol = document.querySelector('input[name="p1xOrO"]:checked').value  //these check for the checked radio button plater inputs
+
+    let  p2Symbol = document.querySelector('input[name="p2xOrO"]:checked').value
+
       
-    }
-
-
-const newGameConfig = (event) => { //this function gets all the player input values on start button press
-
-    event.preventDefault()
     
-    const numberOfGames = document.querySelector('.numberOfRoundsChoice').value;
+    player1 = PlayerObject(player1Name,p1Symbol)
+    player2 = PlayerObject(player2Name,p2Symbol)
 
-    const player1Name = document.querySelector('.p1Name').value;
+    if (player1.symbol === player2.symbol){ return alert('Each player must choose their own symbol.')}
 
-    const player2Name = document.querySelector('.p2Name').value;
-
-    const p1Symbol = document.querySelector('input[name="p1xOrO"]:checked').value;  //these check for the checked radio button plater inputs
-
-    const p2Symbol = document.querySelector('input[name="p2xOrO"]:checked').value;
-
-    if (p1Symbol === p2Symbol) {
-
-        return alert('Players cannot choose same symbol')//do not allow from submisison if players choose same value
-    }
-
-    const player1 = PlayerObject(player1Name, p1Symbol)
-
-    const player2 = PlayerObject(player2Name, p2Symbol)
-
-    document.querySelector('.player1Inputs').reset()
-    document.querySelector('.player2Inputs').reset()//reset form values on press of start button
-    document.querySelector('.gameNumberChoiceContainer').reset() //make game numbers choice form reset
-
+    document.querySelector('.player1Inputs').reset();
+    document.querySelector('.player2Inputs').reset();//reset form values on press of start button
+    document.querySelector('.gameNumberChoiceContainer').reset() ;//make gameNumbersChoice form reset
     
     
-    
-    return console.log(player1.name,player1.playerSymbol,player2.name,player2.playerSymbol)
-
-};
+}
 
 
 //********** EVENT LISTENER ***********//
 
 const startButton = document.querySelector('.startGameButton') // button that starts the whole game and gets player input values
 
-startButton.addEventListener('click' , newGameConfig) // adds all the form info into objects
+startButton.addEventListener('click' , (event)=>{
+event.preventDefault()
+
+    newGameConfig()
+    
+
+    
+    
+
+}
+
+    ) // adds all the form info into objects
 
 
 
 
 
-  const gameFlow = (player1, player2) => {
+  const gameFlow = () => {
 
   /*step1 - choose first player at random, each player receives either x or o at random as their player symbol
 
