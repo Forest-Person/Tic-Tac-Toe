@@ -20,6 +20,8 @@ const gameBoardObject = () => {
         document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
         document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'non'
 
+
+        ///*****EVENT LISTNER*****///
         document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
             document.querySelector('.playerNamesConfigContainer').style.display = 'block';
             document.querySelector('.newGameButton').style.display = 'none';
@@ -56,6 +58,7 @@ let numberOfGames = document.querySelector('.numberOfRoundsChoice').value
 
 function newGameConfig()  {
 
+    //need to handle condition for if forms are lefft blank
     
 
     let  player1Name =document.querySelector('.p1Name').value
@@ -80,7 +83,8 @@ function newGameConfig()  {
     
     document.querySelector('.playerNamesConfigContainer').style.display = 'none' //remove player names config container from dom
 
-    document.querySelector('.playerScoreBoard').style.display = 'block'
+    document.querySelector('.playerScoreBoard').style.display = 'flex'
+    
     
 }
 
@@ -98,11 +102,21 @@ event.preventDefault()
     
     
 
-}
-
-    ) // adds all the form info into objects
+}) // adds all the form info into objects
 
 
+//**********EVENT LISTENER**********// removes all player config information like name,score,tie, and symbol
+//and will reset the whole game back to beginning again. with new game button appearing.
+restartButton = document.querySelector('.restartGameButton')
+restartButton.addEventListener('click', 
+
+()=>{
+
+if(player1 && player2)
+    {Object.keys(player1).forEach(key => player1[key]=null); //removes player properties to null
+    Object.keys(player2).forEach(key => player2[key]=null);}
+    document.querySelector('.playerNamesConfigContainer').style.display = 'block'; //displays the game config form again
+})
 
 
 
