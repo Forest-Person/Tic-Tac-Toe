@@ -116,6 +116,9 @@ if(player1 && player2)
     {Object.keys(player1).forEach(key => player1[key]=null); //removes player properties to null
     Object.keys(player2).forEach(key => player2[key]=null);}
     document.querySelector('.playerNamesConfigContainer').style.display = 'block'; //displays the game config form again
+    document.querySelector('.playerScoreBoard').style.display = 'none' //removes scoreboard
+//need to reset score board back to zero
+
 })
 
 
