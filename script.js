@@ -79,7 +79,7 @@ event.preventDefault()
 
     newGameConfig()
     
-
+    //start new game function goes here
     
     
 
@@ -92,23 +92,27 @@ event.preventDefault()
 
 
   const gameFlow = () => {
+//remove all the form information to save for later reconfig if wanted at end of the game.
+  /*step1 - choose first player at random, each player receives either x or o as their player symbol
 
-  /*step1 - choose first player at random, each player receives either x or o at random as their player symbol
 
-
-    step2 - a.) first player moves by placing either x or o on the board - choose a square and check it
-            
+    step2 - a.)display shows the player name its their turn first player moves by placing either x or o on the board - choose a square and check it
+                1.)new game blank game board is displayed
             b.) check for win - look through array for winning moves
 
             c.) 1.) if win - congrats to player confetti animation, increment score
 
                 2.) if tie - yay both win, increment tie count
 
-                3.) if lose - next player go
+                3.) if null result and more spaces are left to fill - next player go
 
 
-            d.) 
+            d.) next player goes their name is shown and its their turn repeat above steps until all spaces are filled or win condition is taken
 
+            e.) if win remove game board and display winner's name and stats
+
+            f.) show new fresh game board if there are more games to play and start whole process over again
+            g.) display final results and show both player stats.
             
 
 */
