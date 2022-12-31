@@ -35,13 +35,13 @@ const boardObject = (() => {
 
 
 
-const PlayerObject = (nameChoice,symbol) => {
+const PlayerObject = (playerName,symbol) => {
     scoreCount = 0 // score is when a game is won
     tieCount = 0    // tie is when no one wins a game
     
     return{
      
-    nameChoice, //the name object will be filled by an html form
+    playerName, //the name object will be filled by an html form
     
     symbol, // will be chosen by the game flow
     
@@ -57,7 +57,7 @@ const PlayerObject = (nameChoice,symbol) => {
 
 let player1, player2 //player1 and two objects storing chosen names and scores
 
-
+let numberOfGames // number of games global object to tell the user how many games left they have to play
 
 
 function newGameConfig()  {
@@ -73,7 +73,7 @@ function newGameConfig()  {
 
     let  p2Symbol = document.querySelector('input[name="p2xOrO"]:checked').value
 
-    let numberOfGames = document.querySelector('.numberOfRoundsChoice').value
+    numberOfGames = document.querySelector('.numberOfRoundsChoice').value
 
     //Condition below checks if any of the forms are blank and creates alert if they are
       if (numberOfGames === '' || player1Name === '' || player2Name === '' || p1Symbol === '' || p2Symbol === '') {return alert('Form must be filled out to start game.')};
@@ -139,8 +139,17 @@ if(player1 && player2)
 
 
   const gameFlow = () => {
-//remove all the form information to save for later reconfig if wanted at end of the game.
-  /*step1 - choose first player at random, each player receives either x or o as their player symbol
+
+    let firstPlayer,secondPlayer
+  //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
+  (()=>{let choosePlayer = Math.floor(Math.random() *2); //player1 goes if 0 and player2 goes if 1
+  
+
+  if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2
+}else{firstPlayer = player2; secondPlayer = player1} })()
+  
+  
+    /*step1 - choose first player at random, each player receives either x or o as their player symbol
 
 
     step2 - a.)display shows the player name its their turn first player moves by placing either x or o on the board - choose a square and check it
