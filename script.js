@@ -1,33 +1,37 @@
 /******Tic Tac Toe Game******/
+'use strict mode'
+
+const boardObject = (() => {
+
+    const board = ['1' ,'' ,'' 
+                   
+                   ,'' ,'4' ,''
+                   
+                   ,'' ,'','' ];
+  
+    return {board} //should probably be a module IIFE that adds itself to the dom
+  
+  })();
+
+  //boardObject.board.splice(4,1,'o'); example using splice method to remove element and replace with 'O'
+  //the first argument is the index, the second argument is how many elements to remove the third optional argument is the item to add
+  //splice(start, deleteCount, item1, item2, itemN)
+  
 
 
-const gameBoardObject = () => {
+(    ()=>{
 
-  const board = [{p1:''}, {p2:''}, {p3:''},
-                 
-                 {p4:''}, {p5:''}, {p6:''},
-                 
-                 {p7:''}, {p8:''}, {p9:''}];
-
-  return {board} //should probably be a module IIFE that adds itself to the dom
-
-}; 
+    document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
+    document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'non'
 
 
-(           //IIFE that upon click will create the player config seciton. when startnewgame button is clicked the section and new game button go away.
-    ()=>{
-
-        document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
-        document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'non'
-
-
-        ///*****EVENT LISTNER*****///
-        document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
-            document.querySelector('.playerNamesConfigContainer').style.display = 'block';
-            document.querySelector('.newGameButton').style.display = 'none';
-        })
-    }
-)()
+    ///*****EVENT LISTNER***** for new game button///
+    document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
+        document.querySelector('.playerNamesConfigContainer').style.display = 'block';
+        document.querySelector('.newGameButton').style.display = 'none';
+    })
+})();       //IIFE that upon click will create the player config seciton. when startnewgame button is clicked the section and new game button go away.
+    
 
 
 
@@ -85,11 +89,19 @@ function newGameConfig()  {
 
     document.querySelector('.playerScoreBoard').style.display = 'flex'
     
+
+    
+   //the loop below makes the text content of the board in html the same as the content of boardObject.board array
+
+    let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
+    for (let i=0; i < boardContainer.length; i++) {
+        boardContainer[i].textContent = boardObject.board[i];
+    }
     
 }
 
 
-//********** EVENT LISTENER ***********//
+//********** EVENT LISTENER for start game button***********//
 
 const startButton = document.querySelector('.startGameButton') // button that starts the whole game and gets player input values
 
@@ -105,7 +117,7 @@ event.preventDefault()
 }) // adds all the form info into objects
 
 
-//**********EVENT LISTENER**********// removes all player config information like name,score,tie, and symbol
+//**********EVENT LISTENER for restart game button**********// removes all player config information like name,score,tie, and symbol
 //and will reset the whole game back to beginning again. with new game button appearing.
 restartButton = document.querySelector('.restartGameButton')
 restartButton.addEventListener('click', 
