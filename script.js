@@ -57,7 +57,7 @@ const PlayerObject = (nameChoice,symbol) => {
 
 let player1, player2 //player1 and two objects storing chosen names and scores
 
-let numberOfGames = document.querySelector('.numberOfRoundsChoice').value
+
 
 
 function newGameConfig()  {
@@ -73,7 +73,10 @@ function newGameConfig()  {
 
     let  p2Symbol = document.querySelector('input[name="p2xOrO"]:checked').value
 
-      
+    let numberOfGames = document.querySelector('.numberOfRoundsChoice').value
+
+    //Condition below checks if any of the forms are blank and creates alert if they are
+      if (numberOfGames === '' || player1Name === '' || player2Name === '' || p1Symbol === '' || p2Symbol === '') {return alert('Form must be filled out to start game.')};
     
     player1 = PlayerObject(player1Name,p1Symbol)
     player2 = PlayerObject(player2Name,p2Symbol)
