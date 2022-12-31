@@ -23,6 +23,7 @@ const boardObject = (() => {
 
     document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
     document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'non'
+    document.querySelector('.playerTurnIndicator').style.display = 'none'
 
 
     ///*****EVENT LISTNER***** for new game button///
@@ -91,6 +92,7 @@ function newGameConfig()  {
     document.querySelector('.playerNamesConfigContainer').style.display = 'none' //remove player names config container from dom
 
     document.querySelector('.playerScoreBoard').style.display = 'flex'
+    document.querySelector('.playerTurnIndicator').style.display = 'flex'
     
 
     
@@ -147,6 +149,26 @@ if(player1 && player2)
 
   if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2
 }else{firstPlayer = player2; secondPlayer = player1} })()
+
+
+
+ticTacToeContainer = document.querySelector('.ticTacToeGridContainer')
+
+ticTacToeContainer.addEventListener('click',
+
+(event)=>{
+    if (event.target.nodeName == 'P'){
+        console.log('poop')
+    }
+    
+}
+
+)
+
+
+
+
+
   
   
     /*step1 - choose first player at random, each player receives either x or o as their player symbol
