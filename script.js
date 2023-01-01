@@ -3,9 +3,9 @@
 
 const boardObject = (() => {
 
-    const board = ['1' ,'' ,'' 
+    const board = ['' ,'' ,'' 
                    
-                   ,'' ,'4' ,''
+                   ,'' ,'' ,''
                    
                    ,'' ,'','' ];
   
@@ -102,7 +102,7 @@ function newGameConfig()  {
     for (let i=0; i < boardContainer.length; i++) {
         boardContainer[i].textContent = boardObject.board[i];
     }
-    
+    gameFlow()
 }
 
 
@@ -124,7 +124,7 @@ event.preventDefault()
 
 //**********EVENT LISTENER for restart game button**********// removes all player config information like name,score,tie, and symbol
 //and will reset the whole game back to beginning again. with new game button appearing.
-restartButton = document.querySelector('.restartGameButton')
+let restartButton = document.querySelector('.restartGameButton')
 restartButton.addEventListener('click', 
 
 ()=>{
@@ -148,29 +148,67 @@ if(player1 && player2)
   
 
   if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2
-}else{firstPlayer = player2; secondPlayer = player1} })()
+}else{firstPlayer = player2; secondPlayer = player1;}
+ })()
 
 
 
-ticTacToeContainer = document.querySelector('.ticTacToeGridContainer')
+let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer') //for adding event listener
 
-ticTacToeContainer.addEventListener('click',
+let player1TurnIndicator = document.querySelector('.player1TurnIndicator') //classes to show which player turn to light up in html
+let player2TurnIndicator = document.querySelector('.player2TurnIndicator')
+
+
+player1Go()
+
+
+function player1Go() {
+    player2TurnIndicator.style.cssText = "box-shadow:;"
+    player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;" //light up player1 turn indicator
+    
+    
+    ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer
+
+    (event)=>{
+        if (event.target.nodeName === 'P'){
+            event.target.textContent = firstPlayer.symbol
+        }
+        player2Go()
+    })
+
+}
+
+  function player2Go(){
+    player1TurnIndicator.style.cssText = "box-shadow:;"
+    player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+    ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer
+
+    (event)=>{
+        if (event.target.nodeName === 'P'){
+            event.target.textContent = secondPlayer.symbol
+        }
+        player1Go()
+    })
+  }
+
+
+
+}
+
+/*ticTacToeContainer.addEventListener('click',
+
+
 
 (event)=>{
     if (event.target.nodeName == 'P'){
-        console.log('poop')
+        event.target.textContent = 'Poop'
     }
     
 }
 
-)
+)*/
 
 
-
-
-
-  
-  
     /*step1 - choose first player at random, each player receives either x or o as their player symbol
 
 
@@ -195,4 +233,4 @@ ticTacToeContainer.addEventListener('click',
 
 */
 
-  }
+  
