@@ -159,41 +159,48 @@ let player1TurnIndicator = document.querySelector('.player1TurnIndicator') //cla
 let player2TurnIndicator = document.querySelector('.player2TurnIndicator')
 
 
-player1Go()
 
 
-function player1Go() {
-    player2TurnIndicator.style.cssText = "box-shadow:;"
-    player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;" //light up player1 turn indicator
+let player1Turn = true
+
+
+
+    
+player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+     //light up player1 turn indicator
     
     
     ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer
 
     (event)=>{
-        if (event.target.nodeName === 'P'){
+        if (player1Turn === true && event.target.nodeName === 'P' && event.target.text !== secondPlayer.symbol && event.target.textContent !== ''){
+            
+            
             event.target.textContent = firstPlayer.symbol
-        }
-        player2Go()
-    })
+            player1Turn = false
+        
+        }else if (player1Turn === false && event.target.nodeName === 'P' && event.target.text !== firstPlayer.symbol && event.target.textContent !== ''){
 
-}
-
-  function player2Go(){
-    player1TurnIndicator.style.cssText = "box-shadow:;"
-    player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-    ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer
-
-    (event)=>{
-        if (event.target.nodeName === 'P'){
+            
             event.target.textContent = secondPlayer.symbol
-        }
-        player1Go()
+            player1Turn = true}
+
+        if(player1Turn === true){
+            player2TurnIndicator.style.cssText = "box-shadow:none;"
+            player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+        }else{ player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+        player1TurnIndicator.style.cssText = "box-shadow:none;"}
+        
     })
-  }
-
-
-
 }
+
+
+
+  
+
+
+
+
 
 /*ticTacToeContainer.addEventListener('click',
 
