@@ -100,7 +100,7 @@ function newGameConfig()  {
 
     let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
     for (let i=0; i < boardContainer.length; i++) {
-        boardContainer[i].textContent = boardObject.board[i];
+        boardContainer[i].textContent = '';
     }
     gameFlow()
 }
@@ -136,8 +136,11 @@ if(player1 && player2)
     document.querySelector('.playerScoreBoard').style.display = 'none' //removes scoreboard
 //need to reset score board back to zero
 player1TurnIndicator.style.cssText = "box-shadow:unset;"
-    player2TurnIndicator.style.cssText = "box-shadow:unset;"
-    document.querySelector('.playerTurnIndicator').style.display = 'none'
+    player2TurnIndicator.style.cssText = "box-shadow:unset;"//make player turn indicator light turn off
+    document.querySelector('.playerTurnIndicator').style.display = 'none'//remove player turn indicator from screen on restart
+    boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
+    for (let i=0; i < boardContainer.length; i++) {
+        boardContainer[i].textContent = '';}
     
 })
 
