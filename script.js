@@ -135,7 +135,10 @@ if(player1 && player2)
     document.querySelector('.playerNamesConfigContainer').style.display = 'block'; //displays the game config form again
     document.querySelector('.playerScoreBoard').style.display = 'none' //removes scoreboard
 //need to reset score board back to zero
-
+player1TurnIndicator.style.cssText = "box-shadow:unset;"
+    player2TurnIndicator.style.cssText = "box-shadow:unset;"
+    document.querySelector('.playerTurnIndicator').style.display = 'none'
+    
 })
 
 
@@ -146,17 +149,25 @@ if(player1 && player2)
   //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
   (()=>{let choosePlayer = Math.floor(Math.random() *2); //player1 goes if 0 and player2 goes if 1
   
+  player1TurnIndicator = document.querySelector('.player1TurnIndicator') //classes to show which player turn to light up in html
+player2TurnIndicator = document.querySelector('.player2TurnIndicator')
 
-  if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2
-}else{firstPlayer = player2; secondPlayer = player1;}
+  if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2;
+
+    player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!`
+    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
+}else{firstPlayer = player2; secondPlayer = player1;
+    player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
+   player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!`}
  })()
 
 
 
 let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer') //for adding event listener
 
-let player1TurnIndicator = document.querySelector('.player1TurnIndicator') //classes to show which player turn to light up in html
-let player2TurnIndicator = document.querySelector('.player2TurnIndicator')
+
 
 
 
@@ -166,30 +177,30 @@ let player1Turn = true
 
 
     
-player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+//player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
      //light up player1 turn indicator
     
     
     ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer
 
     (event)=>{
-        if (player1Turn === true && event.target.nodeName === 'P' && event.target.text !== secondPlayer.symbol && event.target.textContent !== ''){
+        if (player1Turn === true && event.target.nodeName === 'P' && event.target.text !== secondPlayer.symbol && event.target.textContent == ''){
             
             
             event.target.textContent = firstPlayer.symbol
             player1Turn = false
         
-        }else if (player1Turn === false && event.target.nodeName === 'P' && event.target.text !== firstPlayer.symbol && event.target.textContent !== ''){
+        }else if (player1Turn === false && event.target.nodeName === 'P' && event.target.text !== firstPlayer.symbol && event.target.textContent == ''){
 
             
             event.target.textContent = secondPlayer.symbol
             player1Turn = true}
 
         if(player1Turn === true){
-            player2TurnIndicator.style.cssText = "box-shadow:none;"
+            player2TurnIndicator.style.cssText = "box-shadow:unset;"
             player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
         }else{ player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-        player1TurnIndicator.style.cssText = "box-shadow:none;"}
+        player1TurnIndicator.style.cssText = "box-shadow:unset;"}
         
     })
 }
