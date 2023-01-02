@@ -157,10 +157,10 @@ player2TurnIndicator = document.querySelector('.player2TurnIndicator')
     player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
     player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!`
     player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
-}else{firstPlayer = player2; secondPlayer = player1;
-    player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
-   player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!`}
+}else if (choosePlayer === 1){firstPlayer = player2; secondPlayer = player1;
+    player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!`
+    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`}
  })()
 
 
