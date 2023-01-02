@@ -59,7 +59,8 @@ const PlayerObject = (playerName,symbol) => {
 let player1, player2 //player1 and two objects storing chosen names and scores
 
 let numberOfGames // number of games global object to tell the user how many games left they have to play
-
+let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer') //for adding event listener
+let ticTacToeArray = document.querySelectorAll('.ticTacToeGridContainer p')//for accessing the values of the board and relating them to the symbols to check for win conditions
 
 function newGameConfig()  {
 
@@ -168,7 +169,7 @@ player2TurnIndicator = document.querySelector('.player2TurnIndicator')
 
 
 
-let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer') //for adding event listener
+
 
 
 
@@ -210,7 +211,39 @@ let player1Turn = true
 
 
 
-  
+  const winChecker = () => {
+
+    let boardArray = Array.from(ticTacToeArray)
+
+    let boardTextContent = boardArray.map((content)=>{return content.textContent})
+
+    console.log(boardTextContent)
+
+    
+
+   let winConditions = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+
+    [0,4,8],
+    [2,4,6],
+
+    ]
+for (let slot of winConditions){
+
+    if(boardTextContent[0] === "X" && boardTextContent[1] === "X" && boardTextContent[2] === "X"){return console.log('X WON')}
+
+}
+    
+    //if (boardTextContent[0] ==='X' && boardTextContent[1] === 'X' && boardTextContent[2] === 'X'){return console.log('YOU WON X')}
+    
+
+  }
 
 
 
