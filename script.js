@@ -167,27 +167,56 @@ player2TurnIndicator = document.querySelector('.player2TurnIndicator')
     player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`}
  })()
 
+let player1Turn = true //flag to tell whether its player 1 turn or not
 
 
-
-
-
-
-
-
-
-let player1Turn = true
-
-
-
-    
 //player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
      //light up player1 turn indicator
     
+     const winChecker = () => {
+
+        let ticArray = Array.from(ticTacToeArray)//makes array from the node list of the tictacttoe class of <p>'s
     
+        let boardArray = ticArray.map((content)=>{return content.textContent}) //returns an array where the text content is the elements of the array
+    
+        
+    
+       let winConditions = [//all pokssible winning conditions
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+    
+        [0,4,8],
+        [2,4,6],
+    
+        ]
+    
+        function checkWinner(playerSymbol) {//This function I found on odin project examples it checks every 3 item element of the winconditions array and then uses that as the map to check the board array for any sequences of wins
+            winConditions.forEach((item) => { // [0, 1, 2, 3, 4, 5, 6, 7]
+                if (boardArray[item[0]] === playerSymbol && boardArray[item[1]] === playerSymbol && boardArray[item[2]] === playerSymbol) {
+                   return console.log(playerSymbol);
+                    
+                } 
+            })
+        }
+    
+     checkWinner(firstPlayer.symbol) 
+    
+     checkWinner(secondPlayer.symbol) 
+        
+        //if (boardTextContent[0] ==='X' && boardTextContent[1] === 'X' && boardTextContent[2] === 'X'){return console.log('YOU WON X')}
+       
+      };
+
+      
     ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer
 
     (event)=>{
+        
         if (player1Turn === true && event.target.nodeName === 'P' && event.target.text !== secondPlayer.symbol && event.target.textContent == ''){
             
             
@@ -206,61 +235,17 @@ let player1Turn = true
         }else{ player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
         player1TurnIndicator.style.cssText = "box-shadow:unset;"}
         
-    })
-}
-
-
-
-  const winChecker = () => {
-
-    let boardArray = Array.from(ticTacToeArray)
-
-    let boardTextContent = boardArray.map((content)=>{return content.textContent})
-
-    console.log(boardTextContent)
-
+        winChecker();
     
-
-   let winConditions = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-
-    [0,4,8],
-    [2,4,6],
-
-    ]
-for (let slot of winConditions){
-
-    if(boardTextContent[0] === "X" && boardTextContent[1] === "X" && boardTextContent[2] === "X"){return console.log('X WON')}
-
-}
-    
-    //if (boardTextContent[0] ==='X' && boardTextContent[1] === 'X' && boardTextContent[2] === 'X'){return console.log('YOU WON X')}
-    
-
-  }
-
-
-
-
-
-/*ticTacToeContainer.addEventListener('click',
-
-
-
-(event)=>{
-    if (event.target.nodeName == 'P'){
-        event.target.textContent = 'Poop'
+        })
+        
     }
-    
-}
 
-)*/
+
+  
+
+
+/*
 
 
     /*step1 - choose first player at random, each player receives either x or o as their player symbol
