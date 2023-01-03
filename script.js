@@ -9,7 +9,7 @@ const boardObject = (() => {
                    
                    ,'' ,'','' ];
   
-    return {board} //should probably be a module IIFE that adds itself to the dom
+    return {board} 
   
   })();
 
@@ -198,7 +198,7 @@ let player1Turn = true //flag to tell whether its player 1 turn or not
         function checkWinner(playerSymbol) {//This function I found on odin project examples it checks every 3 item element of the winconditions array and then uses that as the map to check the board array for any sequences of wins
             winConditions.forEach((item) => { // [0, 1, 2, 3, 4, 5, 6, 7]
                 if (boardArray[item[0]] === playerSymbol && boardArray[item[1]] === playerSymbol && boardArray[item[2]] === playerSymbol) {
-                   return console.log(playerSymbol);
+                   return console.log(playerSymbol + 'Wins');
                     
                 } 
             })
