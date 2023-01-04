@@ -168,7 +168,7 @@ player2TurnIndicator = document.querySelector('.player2TurnIndicator')
  })()
 
 let player1Turn = true //flag to tell whether its player 1 turn or not
-
+let slotsLeft = 9 // number to track how many slots have been played
 
 //player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
      //light up player1 turn indicator
@@ -179,9 +179,12 @@ let player1Turn = true //flag to tell whether its player 1 turn or not
     
         let boardArray = ticArray.map((content)=>{return content.textContent}) //returns an array where the text content is the elements of the array
     
-        
-    
-       let winConditions = [//all pokssible winning conditions
+        slotsLeft = slotsLeft-1 //minus slotsleft each time the win checker is run
+        let winFlag //initialize winflag so that if the conditions below become true the win flag is used by the tie checking conditional
+        let tieGameIndicator//tie game indicator changes in the condition below in the for each if no wins are detected
+       
+        let winConditions = [ //all pokssible winning conditions
+       
         [0,1,2],
         [3,4,5],
         [6,7,8],
@@ -195,20 +198,32 @@ let player1Turn = true //flag to tell whether its player 1 turn or not
     
         ]
     
-        function checkWinner(playerSymbol) {//This function I found on odin project examples it checks every 3 item element of the winconditions array and then uses that as the map to check the board array for any sequences of wins
-            winConditions.forEach((item) => { // [0, 1, 2, 3, 4, 5, 6, 7]
+        function checkWinner(playerSymbol) {//This function index access below in first foreach I found on odin project examples it checks every 3 item element of the winconditions array and then uses that as the map to check the board array for any sequences of wins
+            winConditions.forEach((item) => { 
+                
+
                 if (boardArray[item[0]] === playerSymbol && boardArray[item[1]] === playerSymbol && boardArray[item[2]] === playerSymbol) {
-                   return console.log(playerSymbol + 'Wins');
-                    
-                } 
-            })
+                    winFlag = true
+                    return console.log(playerSymbol + 'Wins' )
+                };
+                
+                
+            });
+
+            winConditions.forEach(() => { //this for each uses winflag and slotsleft to tell if a tie condition has been met by making sure no slots are left to play and win condition hjasnt been met its make a tieindicator return true is this is so
+                
+                if (boardArray.some((item)=>{return item !== ''}) === true && slotsLeft <= 0 && winFlag !== true){ //Tie checking conditional returns tie when no more slots are fillable and no win condition is fulfilled.
+                    return tieGameIndicator = true
+                };
+                
+            });
+            if (tieGameIndicator === true){return console.log('TIE GAME HOMIE!')} //tie game returns as true due to conditions above.
         }
     
      checkWinner(firstPlayer.symbol) 
     
      checkWinner(secondPlayer.symbol) 
         
-        //if (boardTextContent[0] ==='X' && boardTextContent[1] === 'X' && boardTextContent[2] === 'X'){return console.log('YOU WON X')}
        
       };
 
@@ -235,7 +250,7 @@ let player1Turn = true //flag to tell whether its player 1 turn or not
         }else{ player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
         player1TurnIndicator.style.cssText = "box-shadow:unset;"}
         
-        winChecker();
+        winChecker(); //Check for player wins and ties
     
         })
         
