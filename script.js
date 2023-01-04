@@ -207,7 +207,7 @@ let slotsLeft = 9 // number to track how many slots have been played
 
                 if (boardArray[item[0]] === playerSymbol && boardArray[item[1]] === playerSymbol && boardArray[item[2]] === playerSymbol) {
                     winFlag = true
-                    return console.log(playerSymbol + 'Wins' )
+                    return console.log(playerSymbol + ' Wins' )
                 };
                 
                 
@@ -258,13 +258,6 @@ let slotsLeft = 9 // number to track how many slots have been played
         })
         
     }
-
-
-  
-
-
-/*
-
 
     /*step1 - choose first player at random, each player receives either x or o as their player symbol
 
