@@ -1,5 +1,5 @@
 /******Tic Tac Toe Game******/
-'use strict mode'
+"use strict"
 
 const boardObject = (() => {
 
@@ -28,8 +28,8 @@ const boardObject = (() => {
 
     ///*****EVENT LISTNER***** for new game button///
     document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
-        document.querySelector('.playerNamesConfigContainer').style.display = 'block';
-        document.querySelector('.newGameButton').style.display = 'none';
+    document.querySelector('.playerNamesConfigContainer').style.display = 'block';
+    document.querySelector('.newGameButton').style.display = 'none';
     })
 })();       //IIFE that upon click will create the player config seciton. when startnewgame button is clicked the section and new game button go away.
     
@@ -37,8 +37,8 @@ const boardObject = (() => {
 
 
 const PlayerObject = (playerName,symbol) => {
-    scoreCount = 0 // score is when a game is won
-    tieCount = 0    // tie is when no one wins a game
+    let scoreCount = 0 // score is when a game is won
+    let tieCount = 0    // tie is when no one wins a game
     
     return{
      
@@ -54,14 +54,17 @@ const PlayerObject = (playerName,symbol) => {
 
 //as per "Barmars" advice on stackoverflow it is okay to create playerobject varibales
 //using let but leave them un initizliized until the newgame config function call//
-//where they become the actual playerobject.
+//where they become the actual playerobject. remember to look out for implicit global variables
+
+//********* GLOBALS ***********//
 
 let player1, player2 //player1 and two objects storing chosen names and scores
 
 let numberOfGames // number of games global object to tell the user how many games left they have to play
-let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer') //for adding event listener
+let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer') //for adding event listener to tic tact toe board
 let ticTacToeArray = document.querySelectorAll('.ticTacToeGridContainer p')//for accessing the values of the board and relating them to the symbols to check for win conditions
-
+let player1TurnIndicator = document.querySelector('.player1TurnIndicator') //classes to show which player turn to light up in html
+let player2TurnIndicator = document.querySelector('.player2TurnIndicator')
 function newGameConfig()  {
 
     //need to handle condition for if forms are lefft blank
@@ -136,7 +139,7 @@ if(player1 && player2)
     document.querySelector('.playerNamesConfigContainer').style.display = 'block'; //displays the game config form again
     document.querySelector('.playerScoreBoard').style.display = 'none' //removes scoreboard
 //need to reset score board back to zero
-player1TurnIndicator.style.cssText = "box-shadow:unset;"
+    player1TurnIndicator.style.cssText = "box-shadow:unset;"
     player2TurnIndicator.style.cssText = "box-shadow:unset;"//make player turn indicator light turn off
     document.querySelector('.playerTurnIndicator').style.display = 'none'//remove player turn indicator from screen on restart
     boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
@@ -154,7 +157,7 @@ player1TurnIndicator.style.cssText = "box-shadow:unset;"
   (()=>{let choosePlayer = Math.floor(Math.random() *2); //player1 goes if 0 and player2 goes if 1
   
   player1TurnIndicator = document.querySelector('.player1TurnIndicator') //classes to show which player turn to light up in html
-player2TurnIndicator = document.querySelector('.player2TurnIndicator')
+  player2TurnIndicator = document.querySelector('.player2TurnIndicator')
 
   if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2;
 
