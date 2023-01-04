@@ -142,7 +142,7 @@ if(player1 && player2)
     player1TurnIndicator.style.cssText = "box-shadow:unset;"
     player2TurnIndicator.style.cssText = "box-shadow:unset;"//make player turn indicator light turn off
     document.querySelector('.playerTurnIndicator').style.display = 'none'//remove player turn indicator from screen on restart
-    boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
+    let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
     for (let i=0; i < boardContainer.length; i++) {
         boardContainer[i].textContent = '';}
     
@@ -215,7 +215,7 @@ let slotsLeft = 9 // number to track how many slots have been played
 
             winConditions.forEach(() => { //this for each uses winflag and slotsleft to tell if a tie condition has been met by making sure no slots are left to play and win condition hjasnt been met its make a tieindicator return true is this is so
                 
-                if (boardArray.some((item)=>{return item !== ''}) === true && slotsLeft <= 0 && winFlag !== true){ //Tie checking conditional returns tie when no more slots are fillable and no win condition is fulfilled.
+                if (boardArray.some((item)=>{return item != ''}) === true && slotsLeft <= 0 && winFlag !== true){ //Tie checking conditional returns tie when no more slots are fillable and no win condition is fulfilled.
                     return tieGameIndicator = true
                 };
                 
