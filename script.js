@@ -268,11 +268,15 @@ let slotsLeft = 9 // number to track how many slots have been played
         //update all player info displays
         
         let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
+        player1ScoreDisplay.textContent = `Score = ${firstPlayer.scoreCount}`
         let player1TieCountDisplay = document.querySelector('.player1TieDisplay')
+        player1TieCountDisplay.textContent = `Tie = ${firstPlayer.tieCount}`
 
         
         let player2ScoreDisplay = document.querySelector('.player2ScoreDisplay')
+        player2ScoreDisplay.textContent = `Score = ${secondPlayer.scoreCount}`
         let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
+        player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
 
 
 
