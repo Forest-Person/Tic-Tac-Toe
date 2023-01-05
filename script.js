@@ -201,13 +201,13 @@ let slotsLeft = 9 // number to track how many slots have been played
     
         ]
     
-        function checkWinner(playerSymbol) {//This function index access below in first foreach I found on odin project examples it checks every 3 item element of the winconditions array and then uses that as the map to check the board array for any sequences of wins
+        function checkWinner(whichPlayer,playerSymbol) {//This function uses index access below in first foreach I found on odin project examples it checks every 3 item element of the winconditions array and then uses that as the map to check the board array for any sequences of wins
             winConditions.forEach((item) => { 
                 
 
                 if (boardArray[item[0]] === playerSymbol && boardArray[item[1]] === playerSymbol && boardArray[item[2]] === playerSymbol) {
                     winFlag = true
-                    return console.log(playerSymbol + ' Wins' )
+                    return whichPlayer.scoreCount += 1
                 };
                 
                 
@@ -220,12 +220,14 @@ let slotsLeft = 9 // number to track how many slots have been played
                 };
                 
             });
-            if (tieGameIndicator === true){return console.log('TIE GAME HOMIE!')} //tie game returns as true due to conditions above.
+            if (tieGameIndicator === true){
+                
+                return whichPlayer.tieCount += 1}; //tie game returns as true due to conditions above.
         }
     
-     checkWinner(firstPlayer.symbol) 
+     checkWinner(firstPlayer, firstPlayer.symbol) 
     
-     checkWinner(secondPlayer.symbol) 
+     checkWinner(secondPlayer, secondPlayer.symbol) 
         
        
       };
