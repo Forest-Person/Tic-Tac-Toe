@@ -65,6 +65,7 @@ let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer') //for
 let ticTacToeArray = document.querySelectorAll('.ticTacToeGridContainer p')//for accessing the values of the board and relating them to the symbols to check for win conditions
 let player1TurnIndicator = document.querySelector('.player1TurnIndicator') //classes to show which player turn to light up in html
 let player2TurnIndicator = document.querySelector('.player2TurnIndicator')
+
 function newGameConfig()  {
 
     //need to handle condition for if forms are lefft blank
@@ -106,7 +107,7 @@ function newGameConfig()  {
     for (let i=0; i < boardContainer.length; i++) {
         boardContainer[i].textContent = '';
     }
-    gameFlow()
+    gameFlow();
 }
 
 
@@ -115,9 +116,9 @@ function newGameConfig()  {
 const startButton = document.querySelector('.startGameButton') // button that starts the whole game and gets player input values
 
 startButton.addEventListener('click' , (event)=>{
-event.preventDefault()
+event.preventDefault();
 
-    newGameConfig()
+    newGameConfig();
     
     //start new game function goes here
     
@@ -156,19 +157,25 @@ if(player1 && player2)
   //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
   (()=>{let choosePlayer = Math.floor(Math.random() *2); //player1 goes if 0 and player2 goes if 1
   
-  player1TurnIndicator = document.querySelector('.player1TurnIndicator') //classes to show which player turn to light up in html
+  player1TurnIndicator = document.querySelector('.player1TurnIndicator') //html classes to show which player turn to light up in html
   player2TurnIndicator = document.querySelector('.player2TurnIndicator')
-
+  let player1ScoreBoardName = document.querySelector('.player1ScoreBoardNameDisplay')
+  let player2ScoreBoardName = document.querySelector('.player2ScoreBoardNameDisplay')
   if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2;
 
     player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!`
+    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!` //determines which player turn it is
     player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
-}else if (choosePlayer === 1){firstPlayer = player2; secondPlayer = player1;
+    player1ScoreBoardName.textContent = `${firstPlayer.playerName}` //make score board name display the names of players
+    player2ScoreBoardName.textContent = `${secondPlayer.playerName}`
+
+}else if (choosePlayer === 1){ firstPlayer = player2; secondPlayer = player1;
     player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!`
-    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`}
- })()
+    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!` //which player turn
+    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
+    player1ScoreBoardName.textContent = `${firstPlayer.playerName}` //update player name display on score board
+    player2ScoreBoardName.textContent = `${secondPlayer.playerName}`}
+ })();
 
 let player1Turn = true //flag to tell whether its player 1 turn or not
 let slotsLeft = 9 // number to track how many slots have been played
@@ -184,7 +191,7 @@ let slotsLeft = 9 // number to track how many slots have been played
     
         slotsLeft = slotsLeft-1 //minus slotsleft each time the win checker is run
         let winFlag //initialize winflag so that if the conditions below become true the win flag is used by the tie checking conditional
-        let tieGameIndicator//tie game indicator changes in the condition below in the for each if no wins are detected
+        let tieGameIndicator//tie game indicator flag changes in the condition below in the for each if no wins are detected
        
         let winConditions = [ //all pokssible winning conditions
        
@@ -207,7 +214,7 @@ let slotsLeft = 9 // number to track how many slots have been played
 
                 if (boardArray[item[0]] === playerSymbol && boardArray[item[1]] === playerSymbol && boardArray[item[2]] === playerSymbol) {
                     winFlag = true
-                    return whichPlayer.scoreCount += 1
+                    return whichPlayer.scoreCount += 1 //increase playerObject.scoreCount
                 };
                 
                 
@@ -222,7 +229,7 @@ let slotsLeft = 9 // number to track how many slots have been played
             });
             if (tieGameIndicator === true){
                 
-                return whichPlayer.tieCount += 1}; //tie game returns as true due to conditions above.
+                return whichPlayer.tieCount += 1}; //tie game returns as true due to conditions above. increase playerObject tieCount for both players
         }
     
      checkWinner(firstPlayer, firstPlayer.symbol) 
@@ -233,7 +240,8 @@ let slotsLeft = 9 // number to track how many slots have been played
       };
 
       
-    ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer
+    ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer and changes which player turn indicator is lit up with box shadow
+    //
 
     (event)=>{
         
@@ -255,7 +263,19 @@ let slotsLeft = 9 // number to track how many slots have been played
         }else{ player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
         player1TurnIndicator.style.cssText = "box-shadow:unset;"}
         
-        winChecker(); //Check for player wins and ties
+        winChecker(); //Check for player wins and ties will either increase player score or both players tie count
+
+        //update all player info displays
+        
+        let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
+        let player1TieCountDisplay = document.querySelector('.player1TieDisplay')
+
+        
+        let player2ScoreDisplay = document.querySelector('.player2ScoreDisplay')
+        let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
+
+
+
     
         })
         
