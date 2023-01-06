@@ -153,6 +153,9 @@ if(player1 && player2)
 
   const gameFlow = () => {
 
+    let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
+        gamesLeftToPlayCounter.textContent = numberOfGames
+    
     let firstPlayer,secondPlayer
   //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
   (()=>{let choosePlayer = Math.floor(Math.random() *2); //player1 goes if 0 and player2 goes if 1
@@ -214,6 +217,14 @@ let slotsLeft = 9 // number to track how many slots have been played
 
                 if (boardArray[item[0]] === playerSymbol && boardArray[item[1]] === playerSymbol && boardArray[item[2]] === playerSymbol) {
                     winFlag = true
+
+                    let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
+    for (let i=0; i < boardContainer.length; i++) {
+        boardContainer[i].textContent = '';} //reset container back to blank again for next game
+        ticArray = [] //reset the tic array again so that the above boardArray has a fresh pallette
+        slotsLeft = 9 //make slots back to 9 again for counter tos tart fresh
+        numberOfGames = numberOfGames - 1 //reduce number of games left to play
+        gamesLeftToPlayCounter.textContent = numberOfGames //update the numberofgames score display
                     return whichPlayer.scoreCount += 1 //increase playerObject.scoreCount
                 };
                 
@@ -223,12 +234,19 @@ let slotsLeft = 9 // number to track how many slots have been played
             winConditions.forEach(() => { //this for each uses winflag and slotsleft to tell if a tie condition has been met by making sure no slots are left to play and win condition hjasnt been met its make a tieindicator return true is this is so
                 
                 if (boardArray.some((item)=>{return item != ''}) === true && slotsLeft <= 0 && winFlag !== true){ //Tie checking conditional returns tie when no more slots are fillable and no win condition is fulfilled.
+                    
                     return tieGameIndicator = true
                 };
                 
             });
             if (tieGameIndicator === true){
-                
+                let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
+    for (let i=0; i < boardContainer.length; i++) {
+        boardContainer[i].textContent = '';}//reset container back to blank again for next game
+        ticArray = []//reset the tic array again so that the above boardArray has a fresh pallette
+        slotsLeft = 9//make slots back to 9 again for the counter to start fresh
+             numberOfGames = numberOfGames - .5   //reduce number of games counter by .5 because each player will reduce the count by one if a tie condition is met
+        gamesLeftToPlayCounter.textContent = numberOfGames //update number of games display on the scoreboard
                 return whichPlayer.tieCount += 1}; //tie game returns as true due to conditions above. increase playerObject tieCount for both players
         }
     
@@ -236,6 +254,7 @@ let slotsLeft = 9 // number to track how many slots have been played
     
      checkWinner(secondPlayer, secondPlayer.symbol) 
         
+     
        
       };
 
@@ -277,6 +296,8 @@ let slotsLeft = 9 // number to track how many slots have been played
         player2ScoreDisplay.textContent = `Score = ${secondPlayer.scoreCount}`
         let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
         player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
+
+        
 
 
 
