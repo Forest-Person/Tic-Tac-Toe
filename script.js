@@ -205,8 +205,8 @@ let slotsLeft = 9 // number to track how many slots have been played
         let boardArray = ticArray.map((content)=>{return content.textContent}) //returns an array where the text content is the elements of the array
     
         slotsLeft = slotsLeft-1 //minus slotsleft each time the win checker is run
-        let winFlag //initialize winflag so that if the conditions below become true the win flag is used by the tie checking conditional
-        let tieGameIndicator//tie game indicator flag changes in the condition below in the for each if no wins are detected
+        let winFlag  //initialize winflag so that if the conditions below become true the win flag is used by the tie checking conditional
+        let tieGameIndicator //tie game indicator flag changes in the condition below in the for each if no wins are detected
        
         let winConditions = [ //all pokssible winning conditions
        
@@ -238,7 +238,8 @@ let slotsLeft = 9 // number to track how many slots have been played
                     slotsLeft = 9 //make slots back to 9 again for counter tos tart fresh
                     numberOfGames = numberOfGames - 1 //reduce number of games left to play
                     gamesLeftToPlayCounter.textContent = numberOfGames //update the numberofgames score display
-                                    
+                    document.querySelector('.lastGameResults').textContent
+                    document.querySelector('.lastGameResults').textContent = `${whichPlayer.playerName} Won last game!`         
                             return whichPlayer.scoreCount += 1 //increase playerObject.scoreCount
                 };
                 
@@ -262,6 +263,8 @@ let slotsLeft = 9 // number to track how many slots have been played
                     slotsLeft = 9//make slots back to 9 again for the counter to start fresh
                     numberOfGames = numberOfGames - .5   //reduce number of games counter by .5 because each player will reduce the count by one if a tie condition is met
                     gamesLeftToPlayCounter.textContent = numberOfGames //update number of games display on the scoreboard
+                    
+                    document.querySelector('.lastGameResults').textContent = 'Both Players TIE!'
                     
                         return whichPlayer.tieCount += 1}; //tie game returns as true due to conditions above. increase playerObject tieCount for both players
         }
