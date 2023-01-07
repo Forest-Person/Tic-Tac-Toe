@@ -276,8 +276,12 @@ let slotsLeft = 9 // number to track how many slots have been played
      checkWinner(secondPlayer, secondPlayer.symbol) 
         
         if (numberOfGames === 0){
-            
-            if(firstPlayer.scoreCount > secondPlayer.scoreCount) {
+            if(firstPlayer.scoreCount === secondPlayer.scoreCount){
+                document.querySelector('.finalGameWinner').style.display = 'block';
+                document.querySelector('.finalGameWinner').textContent = `You Both TIED in the The Tournament!`
+
+            }
+           else if(firstPlayer.scoreCount > secondPlayer.scoreCount) {
             document.querySelector('.finalGameWinner').style.display = 'block';
             document.querySelector('.finalGameWinner').textContent = `Congrats ${firstPlayer.playerName} YOU WON The Tournament!`
         }else if(firstPlayer.scoreCount < secondPlayer.scoreCount) {
@@ -285,7 +289,7 @@ let slotsLeft = 9 // number to track how many slots have been played
             document.querySelector('.finalGameWinner').textContent = `Congrats ${secondPlayer.playerName} YOU WON The Tournament!`
         }
     };  
-
+};
       
     ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer and changes which player turn indicator is lit up with box shadow
     //
