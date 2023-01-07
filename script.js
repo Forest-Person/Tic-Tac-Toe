@@ -24,12 +24,14 @@ const boardObject = (() => {
     document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
     document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'non'
     document.querySelector('.playerTurnIndicator').style.display = 'none'
-
+    document.querySelector('.finalGameWinner').style.display = 'none';
 
     ///*****EVENT LISTNER***** for new game button///
     document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
-    document.querySelector('.playerNamesConfigContainer').style.display = 'block';
-    document.querySelector('.newGameButton').style.display = 'none';
+        
+        document.querySelector('.playerNamesConfigContainer').style.display = 'block';
+        document.querySelector('.newGameButton').style.display = 'none';
+    
     })
 })();       //IIFE that upon click will create the player config seciton. when startnewgame button is clicked the section and new game button go away.
     
@@ -37,8 +39,8 @@ const boardObject = (() => {
 
 
 const PlayerObject = (playerName,symbol) => {
-    let scoreCount = 0 // score is when a game is won
-    let tieCount = 0    // tie is when no one wins a game
+    let scoreCount = 0; // score is when a game is won
+    let tieCount = 0;    // tie is when no one wins a game
     
     return{
      
@@ -61,10 +63,10 @@ const PlayerObject = (playerName,symbol) => {
 let player1, player2 //player1 and two objects storing chosen names and scores
 
 let numberOfGames // number of games global object to tell the user how many games left they have to play
-let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer') //for adding event listener to tic tact toe board
-let ticTacToeArray = document.querySelectorAll('.ticTacToeGridContainer p')//for accessing the values of the board and relating them to the symbols to check for win conditions
-let player1TurnIndicator = document.querySelector('.player1TurnIndicator') //classes to show which player turn to light up in html
-let player2TurnIndicator = document.querySelector('.player2TurnIndicator')
+let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer'); //for adding event listener to tic tact toe board
+let ticTacToeArray = document.querySelectorAll('.ticTacToeGridContainer p');//for accessing the values of the board and relating them to the symbols to check for win conditions
+let player1TurnIndicator = document.querySelector('.player1TurnIndicator'); //classes to show which player turn to light up in html
+let player2TurnIndicator = document.querySelector('.player2TurnIndicator');
 
 function newGameConfig()  {
 
@@ -72,21 +74,21 @@ function newGameConfig()  {
     
     
 
-    let  player1Name =document.querySelector('.p1Name').value
+    let  player1Name =document.querySelector('.p1Name').value;
 
-    let  player2Name = document.querySelector('.p2Name').value
+    let  player2Name = document.querySelector('.p2Name').value;
 
-    let  p1Symbol = document.querySelector('input[name="p1xOrO"]:checked').value  //these check for the checked radio button plater inputs
+    let  p1Symbol = document.querySelector('input[name="p1xOrO"]:checked').value; //these check for the checked radio button plater inputs
 
-    let  p2Symbol = document.querySelector('input[name="p2xOrO"]:checked').value
+    let  p2Symbol = document.querySelector('input[name="p2xOrO"]:checked').value;
 
-    numberOfGames = document.querySelector('.numberOfRoundsChoice').value
+    numberOfGames = document.querySelector('.numberOfRoundsChoice').value;
 
     //Condition below checks if any of the forms are blank and creates alert if they are
       if (numberOfGames === '' || player1Name === '' || player2Name === '' || p1Symbol === '' || p2Symbol === '') {return alert('Form must be filled out to start game.')};
     
-    player1 = PlayerObject(player1Name,p1Symbol)
-    player2 = PlayerObject(player2Name,p2Symbol)
+    player1 = PlayerObject(player1Name,p1Symbol);
+    player2 = PlayerObject(player2Name,p2Symbol);
 
     if (player1.symbol === player2.symbol){ return alert('Each player must choose their own symbol.')}
 
@@ -104,7 +106,7 @@ function newGameConfig()  {
     
    //the loop below makes the text content of the board in html the same as the content of boardObject.board array
 
-    let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
+    let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p');
     for (let i=0; i < boardContainer.length; i++) {
         boardContainer[i].textContent = '';
     }
@@ -130,7 +132,7 @@ event.preventDefault();
 
 //**********EVENT LISTENER for restart game button**********// removes all player config information like name,score,tie, and symbol
 //and will reset the whole game back to beginning again. with new game button appearing.
-let restartButton = document.querySelector('.restartGameButton')
+let restartButton = document.querySelector('.restartGameButton');
 restartButton.addEventListener('click', 
 
 ()=>{
@@ -145,7 +147,7 @@ if(player1 && player2)
     player2TurnIndicator.style.cssText = "box-shadow:unset;"//make player turn indicator light turn off
     document.querySelector('.playerTurnIndicator').style.display = 'none'//remove player turn indicator from screen on restart
     let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
-    for (let i=0; i < boardContainer.length; i++) {
+    for (let i=0; i < boardContainer.length; i++) {//reset board to blank slots on restart button push
         boardContainer[i].textContent = '';}
     
 })
@@ -273,9 +275,16 @@ let slotsLeft = 9 // number to track how many slots have been played
     
      checkWinner(secondPlayer, secondPlayer.symbol) 
         
-
-       
-      };
+        if (numberOfGames === 0){
+            
+            if(firstPlayer.scoreCount > secondPlayer.scoreCount) {
+            document.querySelector('.finalGameWinner').style.display = 'block';
+            document.querySelector('.finalGameWinner').textContent = `Congrats ${firstPlayer.playerName} YOU WON The Tournament!`
+        }else if(firstPlayer.scoreCount < secondPlayer.scoreCount) {
+            document.querySelector('.finalGameWinner').style.display = 'block';
+            document.querySelector('.finalGameWinner').textContent = `Congrats ${secondPlayer.playerName} YOU WON The Tournament!`
+        }
+    };  
 
       
     ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer and changes which player turn indicator is lit up with box shadow
