@@ -70,6 +70,7 @@ function newGameConfig()  {
 
     //need to handle condition for if forms are lefft blank
     
+    
 
     let  player1Name =document.querySelector('.p1Name').value
 
@@ -180,6 +181,17 @@ if(player1 && player2)
     player2ScoreBoardName.textContent = `${secondPlayer.playerName}`}
  })();
 
+        let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
+        player1ScoreDisplay.textContent = `Score = ${firstPlayer.scoreCount}`
+        let player1TieCountDisplay = document.querySelector('.player1TieDisplay')
+        player1TieCountDisplay.textContent = `Tie = ${firstPlayer.tieCount}`
+
+        let player2ScoreDisplay = document.querySelector('.player2ScoreDisplay')
+        player2ScoreDisplay.textContent = `Score = ${secondPlayer.scoreCount}`
+        let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
+        player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
+
+
 let player1Turn = true //flag to tell whether its player 1 turn or not
 let slotsLeft = 9 // number to track how many slots have been played
 
@@ -189,7 +201,7 @@ let slotsLeft = 9 // number to track how many slots have been played
      const winChecker = () => {
 
         let ticArray = Array.from(ticTacToeArray)//makes array from the node list of the tictacttoe class of <p>'s
-    
+        
         let boardArray = ticArray.map((content)=>{return content.textContent}) //returns an array where the text content is the elements of the array
     
         slotsLeft = slotsLeft-1 //minus slotsleft each time the win checker is run
@@ -219,13 +231,15 @@ let slotsLeft = 9 // number to track how many slots have been played
                     winFlag = true
 
                     let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
-    for (let i=0; i < boardContainer.length; i++) {
-        boardContainer[i].textContent = '';} //reset container back to blank again for next game
-        ticArray = [] //reset the tic array again so that the above boardArray has a fresh pallette
-        slotsLeft = 9 //make slots back to 9 again for counter tos tart fresh
-        numberOfGames = numberOfGames - 1 //reduce number of games left to play
-        gamesLeftToPlayCounter.textContent = numberOfGames //update the numberofgames score display
-                    return whichPlayer.scoreCount += 1 //increase playerObject.scoreCount
+                    for (let i=0; i < boardContainer.length; i++) {
+                        boardContainer[i].textContent = '';} //reset container back to blank again for next game
+                    
+                   // ticArray = [] //reset the tic array again so that the above boardArray has a fresh pallette
+                    slotsLeft = 9 //make slots back to 9 again for counter tos tart fresh
+                    numberOfGames = numberOfGames - 1 //reduce number of games left to play
+                    gamesLeftToPlayCounter.textContent = numberOfGames //update the numberofgames score display
+                                    
+                            return whichPlayer.scoreCount += 1 //increase playerObject.scoreCount
                 };
                 
                 
@@ -233,28 +247,30 @@ let slotsLeft = 9 // number to track how many slots have been played
 
             winConditions.forEach(() => { //this for each uses winflag and slotsleft to tell if a tie condition has been met by making sure no slots are left to play and win condition hjasnt been met its make a tieindicator return true is this is so
                 
-                if (boardArray.some((item)=>{return item != ''}) === true && slotsLeft <= 0 && winFlag !== true){ //Tie checking conditional returns tie when no more slots are fillable and no win condition is fulfilled.
+                if (boardArray.some((item)=>{return item != ''}) === true && slotsLeft === 0 && winFlag !== true){ //Tie checking conditional returns tie when no more slots are fillable and no win condition is fulfilled.
                     
                     return tieGameIndicator = true
                 };
                 
             });
-            if (tieGameIndicator === true){
-                let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
-    for (let i=0; i < boardContainer.length; i++) {
-        boardContainer[i].textContent = '';}//reset container back to blank again for next game
-        ticArray = []//reset the tic array again so that the above boardArray has a fresh pallette
-        slotsLeft = 9//make slots back to 9 again for the counter to start fresh
-             numberOfGames = numberOfGames - .5   //reduce number of games counter by .5 because each player will reduce the count by one if a tie condition is met
-        gamesLeftToPlayCounter.textContent = numberOfGames //update number of games display on the scoreboard
-                return whichPlayer.tieCount += 1}; //tie game returns as true due to conditions above. increase playerObject tieCount for both players
+                if (tieGameIndicator === true){
+                    let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
+                    for (let i=0; i < boardContainer.length; i++) {
+                        boardContainer[i].textContent = '';}//reset container back to blank again for next game
+                    
+                    //ticArray = []//reset the tic array again so that the above boardArray has a fresh pallette
+                    slotsLeft = 9//make slots back to 9 again for the counter to start fresh
+                    numberOfGames = numberOfGames - .5   //reduce number of games counter by .5 because each player will reduce the count by one if a tie condition is met
+                    gamesLeftToPlayCounter.textContent = numberOfGames //update number of games display on the scoreboard
+                    
+                        return whichPlayer.tieCount += 1}; //tie game returns as true due to conditions above. increase playerObject tieCount for both players
         }
     
      checkWinner(firstPlayer, firstPlayer.symbol) 
     
      checkWinner(secondPlayer, secondPlayer.symbol) 
         
-     
+
        
       };
 
@@ -274,29 +290,40 @@ let slotsLeft = 9 // number to track how many slots have been played
 
             
             event.target.textContent = secondPlayer.symbol
-            player1Turn = true}
+            player1Turn = true};
 
         if(player1Turn === true){
-            player2TurnIndicator.style.cssText = "box-shadow:unset;"
-            player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-        }else{ player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-        player1TurnIndicator.style.cssText = "box-shadow:unset;"}
+            
+            player2TurnIndicator.style.cssText = "box-shadow:unset;";
+            player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;";
+        }else{ player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;";
+        
+            player1TurnIndicator.style.cssText = "box-shadow:unset;"};
         
         winChecker(); //Check for player wins and ties will either increase player score or both players tie count
 
         //update all player info displays
         
-        let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
+        player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
         player1ScoreDisplay.textContent = `Score = ${firstPlayer.scoreCount}`
-        let player1TieCountDisplay = document.querySelector('.player1TieDisplay')
+        player1TieCountDisplay = document.querySelector('.player1TieDisplay')
         player1TieCountDisplay.textContent = `Tie = ${firstPlayer.tieCount}`
 
-        
-        let player2ScoreDisplay = document.querySelector('.player2ScoreDisplay')
+        player2ScoreDisplay = document.querySelector('.player2ScoreDisplay')
         player2ScoreDisplay.textContent = `Score = ${secondPlayer.scoreCount}`
-        let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
+        player2TieCountDisplay = document.querySelector('.player2TieDisplay')
         player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
 
+
+
+        //TODO need to have the same code to initialize the score board up above but with the player1 and player2 objects.
+        //display winner of each game
+        //Need to have code to handle the zero out of the games left to play.
+        //display final winner of the total game and ask to play again? if yes keep names and symbols and start over again
+        
+
+        
+        
         
 
 
@@ -306,7 +333,8 @@ let slotsLeft = 9 // number to track how many slots have been played
         
     }
 
-    /*step1 - choose first player at random, each player receives either x or o as their player symbol
+    /*
+    step1 - choose first player at random, each player receives either x or o as their player symbol
 
 
     step2 - a.)display shows the player name its their turn first player moves by placing either x or o on the board - choose a square and check it
