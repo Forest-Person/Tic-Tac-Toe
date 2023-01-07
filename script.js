@@ -275,13 +275,13 @@ let slotsLeft = 9 // number to track how many slots have been played
     
      checkWinner(secondPlayer, secondPlayer.symbol) 
         
-        if (numberOfGames === 0){
+        if (numberOfGames === 0){ //logic for displaying final game results in .finalgameresults class element in html
             if(firstPlayer.scoreCount === secondPlayer.scoreCount){
                 document.querySelector('.finalGameWinner').style.display = 'block';
                 document.querySelector('.finalGameWinner').textContent = `You Both TIED in the The Tournament!`
 
-            }
-           else if(firstPlayer.scoreCount > secondPlayer.scoreCount) {
+            
+            }else if(firstPlayer.scoreCount > secondPlayer.scoreCount) {
             document.querySelector('.finalGameWinner').style.display = 'block';
             document.querySelector('.finalGameWinner').textContent = `Congrats ${firstPlayer.playerName} YOU WON The Tournament!`
         }else if(firstPlayer.scoreCount < secondPlayer.scoreCount) {
