@@ -22,9 +22,10 @@ const boardObject = (() => {
 (    ()=>{
 
     document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
-    document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'non'
+    document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
     document.querySelector('.playerTurnIndicator').style.display = 'none'
-    document.querySelector('.finalGameWinner').style.display = 'none';
+    document.querySelector('.finalGameWinner').style.display = 'none'; //final game winner and tournament winner will be displayed at end of game
+    document.querySelector('.lastGameResults').style.display = 'none';
 
     ///*****EVENT LISTNER***** for new game button///
     document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
@@ -150,6 +151,7 @@ if(player1 && player2)
     for (let i=0; i < boardContainer.length; i++) {//reset board to blank slots on restart button push
         boardContainer[i].textContent = '';}
     
+    
 })
 
 
@@ -240,6 +242,7 @@ let slotsLeft = 9 // number to track how many slots have been played
                     slotsLeft = 9 //make slots back to 9 again for counter tos tart fresh
                     numberOfGames = numberOfGames - 1 //reduce number of games left to play
                     gamesLeftToPlayCounter.textContent = numberOfGames //update the numberofgames score display
+                    document.querySelector('.lastGameResults').style.display = 'block'
                     document.querySelector('.lastGameResults').textContent
                     document.querySelector('.lastGameResults').textContent = `${whichPlayer.playerName} Won last game!`         
                             return whichPlayer.scoreCount += 1 //increase playerObject.scoreCount
@@ -265,7 +268,7 @@ let slotsLeft = 9 // number to track how many slots have been played
                     slotsLeft = 9//make slots back to 9 again for the counter to start fresh
                     numberOfGames = numberOfGames - .5   //reduce number of games counter by .5 because each player will reduce the count by one if a tie condition is met
                     gamesLeftToPlayCounter.textContent = numberOfGames //update number of games display on the scoreboard
-                    
+                    document.querySelector('.lastGameResults').style.display = 'block'
                     document.querySelector('.lastGameResults').textContent = 'Both Players TIE!'
                     
                         return whichPlayer.tieCount += 1}; //tie game returns as true due to conditions above. increase playerObject tieCount for both players
@@ -277,16 +280,19 @@ let slotsLeft = 9 // number to track how many slots have been played
         
         if (numberOfGames === 0){ //logic for displaying final game results in .finalgameresults class element in html
             if(firstPlayer.scoreCount === secondPlayer.scoreCount){
+                
                 document.querySelector('.finalGameWinner').style.display = 'block';
                 document.querySelector('.finalGameWinner').textContent = `You Both TIED in the The Tournament!`
 
-            
             }else if(firstPlayer.scoreCount > secondPlayer.scoreCount) {
-            document.querySelector('.finalGameWinner').style.display = 'block';
-            document.querySelector('.finalGameWinner').textContent = `Congrats ${firstPlayer.playerName} YOU WON The Tournament!`
-        }else if(firstPlayer.scoreCount < secondPlayer.scoreCount) {
-            document.querySelector('.finalGameWinner').style.display = 'block';
-            document.querySelector('.finalGameWinner').textContent = `Congrats ${secondPlayer.playerName} YOU WON The Tournament!`
+                
+                document.querySelector('.finalGameWinner').style.display = 'block';
+                document.querySelector('.finalGameWinner').textContent = `Congrats ${firstPlayer.playerName} YOU WON The Tournament!`
+            
+            }else if(firstPlayer.scoreCount < secondPlayer.scoreCount) {
+                
+                document.querySelector('.finalGameWinner').style.display = 'block';
+                document.querySelector('.finalGameWinner').textContent = `Congrats ${secondPlayer.playerName} YOU WON The Tournament!`
         }
     };  
 };
@@ -312,6 +318,7 @@ let slotsLeft = 9 // number to track how many slots have been played
             
             player2TurnIndicator.style.cssText = "box-shadow:unset;";
             player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;";
+        
         }else{ player2TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;";
         
             player1TurnIndicator.style.cssText = "box-shadow:unset;"};
