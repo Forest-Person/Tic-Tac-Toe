@@ -26,6 +26,8 @@ const boardObject = (() => {
     document.querySelector('.playerTurnIndicator').style.display = 'none'
     document.querySelector('.finalGameWinner').style.display = 'none'; //final game winner and tournament winner will be displayed at end of game
     document.querySelector('.lastGameResults').style.display = 'none';
+    document.querySelector('.restartGameButton').style.display = 'none';
+    
 
     ///*****EVENT LISTNER***** for new game button///
     document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
@@ -64,6 +66,7 @@ const PlayerObject = (playerName,symbol) => {
 let player1, player2 //player1 and two objects storing chosen names and scores
 
 let numberOfGames // number of games global object to tell the user how many games left they have to play
+let playAgainNumberOfGamesCounter
 let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer'); //for adding event listener to tic tact toe board
 let ticTacToeArray = document.querySelectorAll('.ticTacToeGridContainer p');//for accessing the values of the board and relating them to the symbols to check for win conditions
 let player1TurnIndicator = document.querySelector('.player1TurnIndicator'); //classes to show which player turn to light up in html
@@ -121,7 +124,7 @@ const startButton = document.querySelector('.startGameButton') // button that st
 
 startButton.addEventListener('click' , (event)=>{
 event.preventDefault();
-
+restartButton.style.display = 'block'
     newGameConfig();
     
     //start new game function goes here
@@ -134,22 +137,19 @@ event.preventDefault();
 //**********EVENT LISTENER for restart game button**********// removes all player config information like name,score,tie, and symbol
 //and will reset the whole game back to beginning again. with new game button appearing.
 let restartButton = document.querySelector('.restartGameButton');
+
 restartButton.addEventListener('click', 
 
 ()=>{
 
-if(player1 && player2)
-    {Object.keys(player1).forEach(key => player1[key]=null); //removes player properties to null
-    Object.keys(player2).forEach(key => player2[key]=null);}
-    document.querySelector('.playerNamesConfigContainer').style.display = 'block'; //displays the game config form again
-    document.querySelector('.playerScoreBoard').style.display = 'none' //removes scoreboard
+
+    
+    
 //need to reset score board back to zero
     player1TurnIndicator.style.cssText = "box-shadow:unset;"
     player2TurnIndicator.style.cssText = "box-shadow:unset;"//make player turn indicator light turn off
-    document.querySelector('.playerTurnIndicator').style.display = 'none'//remove player turn indicator from screen on restart
-    let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
-    for (let i=0; i < boardContainer.length; i++) {//reset board to blank slots on restart button push
-        boardContainer[i].textContent = '';}
+    
+    startAgain()
     
     
 })
@@ -160,6 +160,7 @@ if(player1 && player2)
 
     let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
         gamesLeftToPlayCounter.textContent = numberOfGames
+        playAgainNumberOfGamesCounter = numberOfGames
     
     let firstPlayer,secondPlayer
   //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
@@ -277,7 +278,10 @@ let slotsLeft = 9 // number to track how many slots have been played
      checkWinner(firstPlayer, firstPlayer.symbol) 
     
      checkWinner(secondPlayer, secondPlayer.symbol) 
-        
+     
+     console.log(slotsLeft,winFlag)
+
+
         if (numberOfGames === 0){ //logic for displaying final game results in .finalgameresults class element in html
             if(firstPlayer.scoreCount === secondPlayer.scoreCount){
                 
@@ -296,23 +300,35 @@ let slotsLeft = 9 // number to track how many slots have been played
         }
     };  
 };
+
+
+
+//HOLY FUCKING EUREKA!!! I AM ADDING NEWGAMECONFIG TWICE UPON CLICK OF START NEW GAME BUTTON YES!!!!!!!
+
+
+
       
     ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer and changes which player turn indicator is lit up with box shadow
     //
 
     (event)=>{
         
-        if (player1Turn === true && event.target.nodeName === 'P' && event.target.text !== secondPlayer.symbol && event.target.textContent == ''){
+        if (event.target.nodeName === 'ARTICLE'){return}
+if (event.target.textContent === firstPlayer.symbol || event.target.textContent === secondPlayer.symbol){return}
+                
+        if (player1Turn === true && event.target.nodeName === 'P' && event.target.textContent !== secondPlayer.symbol && event.target.textContent == ''){
             
             
             event.target.textContent = firstPlayer.symbol
             player1Turn = false
+            
         
-        }else if (player1Turn === false && event.target.nodeName === 'P' && event.target.text !== firstPlayer.symbol && event.target.textContent == ''){
+        }else if (player1Turn === false && event.target.nodeName === 'P' && event.target.textContent !== firstPlayer.symbol && event.target.textContent == ''){
 
             
             event.target.textContent = secondPlayer.symbol
             player1Turn = true};
+            
 
         if(player1Turn === true){
             
@@ -323,8 +339,13 @@ let slotsLeft = 9 // number to track how many slots have been played
         
             player1TurnIndicator.style.cssText = "box-shadow:unset;"};
         
-        winChecker(); //Check for player wins and ties will either increase player score or both players tie count
+        
+        winChecker()
 
+
+    
+        
+        
         //update all player info displays
         
         player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
@@ -336,49 +357,60 @@ let slotsLeft = 9 // number to track how many slots have been played
         player2ScoreDisplay.textContent = `Score = ${secondPlayer.scoreCount}`
         player2TieCountDisplay = document.querySelector('.player2TieDisplay')
         player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
+       
 
-
-
-        //TODO need to have the same code to initialize the score board up above but with the player1 and player2 objects.
-        //display winner of each game
-        //Need to have code to handle the zero out of the games left to play.
-        //display final winner of the total game and ask to play again? if yes keep names and symbols and start over again
-        
-
-        
-        
-        
-
-
-
-    
         })
         
     }
 
-    /*
-    step1 - choose first player at random, each player receives either x or o as their player symbol
+    const startAgain = ()=>{
 
-
-    step2 - a.)display shows the player name its their turn first player moves by placing either x or o on the board - choose a square and check it
-                1.)new game blank game board is displayed
-            b.) check for win - look through array for winning moves
-
-            c.) 1.) if win - congrats to player confetti animation, increment score
-
-                2.) if tie - yay both win, increment tie count
-
-                3.) if null result and more spaces are left to fill - next player go
-
-
-            d.) next player goes their name is shown and its their turn repeat above steps until all spaces are filled or win condition is taken
-
-            e.) if win remove game board and display winner's name and stats
-
-            f.) show new fresh game board if there are more games to play and start whole process over again
-            g.) display final results and show both player stats.
-            
-
-*/
-
+        numberOfGames = playAgainNumberOfGamesCounter
+    
+    let firstPlayer,secondPlayer
+  //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
+  (()=>{let choosePlayer = Math.floor(Math.random() *2); //player1 goes if 0 and player2 goes if 1
   
+  player1TurnIndicator = document.querySelector('.player1TurnIndicator') //html classes to show which player turn to light up in html
+  player2TurnIndicator = document.querySelector('.player2TurnIndicator')
+  let player1ScoreBoardName = document.querySelector('.player1ScoreBoardNameDisplay')
+  let player2ScoreBoardName = document.querySelector('.player2ScoreBoardNameDisplay')
+  if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2;
+
+    player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!` //determines which player turn it is
+    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
+    player1ScoreBoardName.textContent = `${firstPlayer.playerName}` //make score board name display the names of players
+    player2ScoreBoardName.textContent = `${secondPlayer.playerName}`
+
+}else if (choosePlayer === 1){ firstPlayer = player2; secondPlayer = player1;
+    player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
+    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!` //which player turn
+    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
+    player1ScoreBoardName.textContent = `${firstPlayer.playerName}` //update player name display on score board
+    player2ScoreBoardName.textContent = `${secondPlayer.playerName}`}
+ })();
+
+ firstPlayer.scoreCount = 0
+ secondPlayer.scoreCount = 0
+ firstPlayer.tieCount = 0
+ secondPlayer.tieCount = 0
+
+        let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
+        player1ScoreDisplay.textContent = `Score = ${firstPlayer.scoreCount}`
+        let player1TieCountDisplay = document.querySelector('.player1TieDisplay')
+        player1TieCountDisplay.textContent = `Tie = ${firstPlayer.tieCount}`
+
+        let player2ScoreDisplay = document.querySelector('.player2ScoreDisplay')
+        player2ScoreDisplay.textContent = `Score = ${secondPlayer.scoreCount}`
+        let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
+        player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
+
+
+
+
+};
+
+
+        
+    
