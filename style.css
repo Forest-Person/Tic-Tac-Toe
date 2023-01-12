@@ -83,3 +83,42 @@ article.playerNamesConfigContainer {
     flex-direction: column;
     align-items: center;
 }
+
+.startGameButton {
+
+    margin:.5rem;
+    padding:.3rem;
+}
+
+.player1XorO {
+    padding:.5rem;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.player2XorO {
+    
+    padding:.5rem;
+    display:flex;
+    
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.p1XorOChoice{
+
+    display: flex;
+    align-items: center;
+    
+}
+
+.p2XorOChoice {
+    display: flex;
+    align-items: center;
+
+}
+

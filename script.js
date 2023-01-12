@@ -32,7 +32,7 @@ const boardObject = (() => {
     ///*****EVENT LISTNER***** for new game button///
     document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
         
-        document.querySelector('.playerNamesConfigContainer').style.display = 'block';
+        document.querySelector('.playerNamesConfigContainer').style.display = 'flex';
         document.querySelector('.newGameButton').style.display = 'none';
     
     })
