@@ -283,18 +283,22 @@ let slotsLeft = 9 // number to track how many slots have been played
                 
                 document.querySelector('.finalGameWinner').style.display = 'block';
                 document.querySelector('.finalGameWinner').textContent = `You Both TIED in the The Tournament!`
-
+                document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
+                document.querySelector('.playerTurnIndicator').style.display = 'none'
+                document.querySelector('.ticTacToeGridContainer').style.display = 'none'
             }else if(firstPlayer.scoreCount > secondPlayer.scoreCount) {
-                
+                document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
+                document.querySelector('.playerTurnIndicator').style.display = 'none'
                 document.querySelector('.finalGameWinner').style.display = 'block';
                 document.querySelector('.finalGameWinner').textContent = `Congrats ${firstPlayer.playerName} YOU WON The Tournament!`
-            
+                document.querySelector('.ticTacToeGridContainer').style.display = 'none'
             }else if(firstPlayer.scoreCount < secondPlayer.scoreCount) {
                 
                 document.querySelector('.finalGameWinner').style.display = 'block';
                 document.querySelector('.finalGameWinner').textContent = `Congrats ${secondPlayer.playerName} YOU WON The Tournament!`
-                
-            
+                document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
+                document.querySelector('.playerTurnIndicator').style.display = 'none'
+                document.querySelector('.ticTacToeGridContainer').style.display = 'none'
         
         }
     };  
@@ -364,7 +368,7 @@ if (event.target.textContent === firstPlayer.symbol || event.target.textContent 
 
     const startAgain = ()=>{
  
-        
+        document.querySelector('.ticTacToeGridContainer').style.display = 'grid'
         numberOfGames = playAgainNumberOfGamesCounter
         let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
         gamesLeftToPlayCounter.textContent = numberOfGames
@@ -374,7 +378,8 @@ if (event.target.textContent === firstPlayer.symbol || event.target.textContent 
         secondPlayer.scoreCount = 0
         firstPlayer.tieCount = 0
         secondPlayer.scoreCount = 0
-
+        document.querySelector('.playerScoreBoard').style.display = 'flex' //make points display 'none'
+        document.querySelector('.playerTurnIndicator').style.display = 'flex'
  
 
         let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
