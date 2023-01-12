@@ -21,7 +21,7 @@ const boardObject = (() => {
 
 (    ()=>{
 
-    document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
+    //document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
     document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
     document.querySelector('.playerTurnIndicator').style.display = 'none'
     document.querySelector('.finalGameWinner').style.display = 'none'; //final game winner and tournament winner will be displayed at end of game
