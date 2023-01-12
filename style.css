@@ -5,7 +5,8 @@
     padding: 0; 
     border: 0; 
     box-sizing: border-box;
-    border:2px solid red
+    border:2px solid red;
+    background-color:rgb(255, 195, 161) ;
 }
 
 .ticTacToeGridContainer {
@@ -24,3 +25,19 @@
     font-size: 4rem;
     
 }
+
+.headerTitleContainer{
+
+    background-color: rgb(167, 93, 93);
+
+    display:flex;
+    justify-content: center;
+    font-size: 2rem !important;
+    
+}
+
+.headerTitleContainer h1 {
+color: rgb(236, 226, 226);
+    background-color: rgb(167, 93, 93);
+}
+
