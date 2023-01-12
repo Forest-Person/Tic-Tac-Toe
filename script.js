@@ -71,6 +71,7 @@ let ticTacToeContainer = document.querySelector('.ticTacToeGridContainer'); //fo
 let ticTacToeArray = document.querySelectorAll('.ticTacToeGridContainer p');//for accessing the values of the board and relating them to the symbols to check for win conditions
 let player1TurnIndicator = document.querySelector('.player1TurnIndicator'); //classes to show which player turn to light up in html
 let player2TurnIndicator = document.querySelector('.player2TurnIndicator');
+let firstPlayer,secondPlayer
 
 function newGameConfig()  {
 
@@ -87,7 +88,7 @@ function newGameConfig()  {
     let  p2Symbol = document.querySelector('input[name="p2xOrO"]:checked').value;
 
     numberOfGames = document.querySelector('.numberOfRoundsChoice').value;
-
+    playAgainNumberOfGamesCounter = document.querySelector('.numberOfRoundsChoice').value;
     //Condition below checks if any of the forms are blank and creates alert if they are
       if (numberOfGames === '' || player1Name === '' || player2Name === '' || p1Symbol === '' || p2Symbol === '') {return alert('Form must be filled out to start game.')};
     
@@ -136,6 +137,7 @@ restartButton.style.display = 'block'
 
 //**********EVENT LISTENER for restart game button**********// removes all player config information like name,score,tie, and symbol
 //and will reset the whole game back to beginning again. with new game button appearing.
+
 let restartButton = document.querySelector('.restartGameButton');
 
 restartButton.addEventListener('click', 
@@ -143,12 +145,6 @@ restartButton.addEventListener('click',
 ()=>{
 
 
-    
-    
-//need to reset score board back to zero
-    player1TurnIndicator.style.cssText = "box-shadow:unset;"
-    player2TurnIndicator.style.cssText = "box-shadow:unset;"//make player turn indicator light turn off
-    
     startAgain()
     
     
@@ -158,11 +154,10 @@ restartButton.addEventListener('click',
 
   const gameFlow = () => {
 
-    let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
-        gamesLeftToPlayCounter.textContent = numberOfGames
-        playAgainNumberOfGamesCounter = numberOfGames
+   
+        
     
-    let firstPlayer,secondPlayer
+    
   //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
   (()=>{let choosePlayer = Math.floor(Math.random() *2); //player1 goes if 0 and player2 goes if 1
   
@@ -196,7 +191,8 @@ restartButton.addEventListener('click',
         let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
         player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
 
-
+        let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
+        gamesLeftToPlayCounter.textContent = numberOfGames
 let player1Turn = true //flag to tell whether its player 1 turn or not
 let slotsLeft = 9 // number to track how many slots have been played
 
@@ -297,18 +293,21 @@ let slotsLeft = 9 // number to track how many slots have been played
                 
                 document.querySelector('.finalGameWinner').style.display = 'block';
                 document.querySelector('.finalGameWinner').textContent = `Congrats ${secondPlayer.playerName} YOU WON The Tournament!`
+                
+            
+        
         }
     };  
 };
 
 
-
-//HOLY FUCKING EUREKA!!! I AM ADDING NEWGAMECONFIG TWICE UPON CLICK OF START NEW GAME BUTTON YES!!!!!!!
-
+//********** EVENT LISTENER ***********//
 
 
-      
-    ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer and changes which player turn indicator is lit up with box shadow
+//need to restart game with player1Turn as true?
+    
+
+ticTacToeContainer.addEventListener('click', //adds player symbol to tictactoegridcontainer and changes which player turn indicator is lit up with box shadow
     //
 
     (event)=>{
@@ -343,7 +342,7 @@ if (event.target.textContent === firstPlayer.symbol || event.target.textContent 
         winChecker()
 
 
-    
+        
         
         
         //update all player info displays
@@ -364,37 +363,19 @@ if (event.target.textContent === firstPlayer.symbol || event.target.textContent 
     }
 
     const startAgain = ()=>{
-
+ 
+        
         numberOfGames = playAgainNumberOfGamesCounter
+        let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
+        gamesLeftToPlayCounter.textContent = numberOfGames
     
-    let firstPlayer,secondPlayer
   //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
-  (()=>{let choosePlayer = Math.floor(Math.random() *2); //player1 goes if 0 and player2 goes if 1
-  
-  player1TurnIndicator = document.querySelector('.player1TurnIndicator') //html classes to show which player turn to light up in html
-  player2TurnIndicator = document.querySelector('.player2TurnIndicator')
-  let player1ScoreBoardName = document.querySelector('.player1ScoreBoardNameDisplay')
-  let player2ScoreBoardName = document.querySelector('.player2ScoreBoardNameDisplay')
-  if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2;
+        firstPlayer.scoreCount = 0
+        secondPlayer.scoreCount = 0
+        firstPlayer.tieCount = 0
+        secondPlayer.scoreCount = 0
 
-    player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!` //determines which player turn it is
-    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
-    player1ScoreBoardName.textContent = `${firstPlayer.playerName}` //make score board name display the names of players
-    player2ScoreBoardName.textContent = `${secondPlayer.playerName}`
-
-}else if (choosePlayer === 1){ firstPlayer = player2; secondPlayer = player1;
-    player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
-    player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!` //which player turn
-    player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
-    player1ScoreBoardName.textContent = `${firstPlayer.playerName}` //update player name display on score board
-    player2ScoreBoardName.textContent = `${secondPlayer.playerName}`}
- })();
-
- firstPlayer.scoreCount = 0
- secondPlayer.scoreCount = 0
- firstPlayer.tieCount = 0
- secondPlayer.tieCount = 0
+ 
 
         let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
         player1ScoreDisplay.textContent = `Score = ${firstPlayer.scoreCount}`
