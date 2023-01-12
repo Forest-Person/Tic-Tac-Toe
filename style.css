@@ -26,6 +26,8 @@
     
 }
 
+/************HEADER************/
+
 .headerTitleContainer{
 
     background-color: rgb(167, 93, 93);
@@ -41,3 +43,19 @@ color: rgb(236, 226, 226);
     background-color: rgb(167, 93, 93);
 }
 
+.newGameButton {
+
+    display: flex;
+    justify-content: center;
+}
+
+.newGameButton button{
+
+    display: flex;
+    justify-content: center;
+    padding:.5rem;
+    border: 2px solid rgb(88, 56, 53);
+    font-size: 2rem;
+    color: rgb(90, 46, 46);
+    background-color: rgb(240, 153, 125);
+}

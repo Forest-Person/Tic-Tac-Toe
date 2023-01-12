@@ -118,7 +118,7 @@ function newGameConfig()  {
     gameFlow();
 }
 
-
+let restartButton = document.querySelector('.restartGameButton');
 //********** EVENT LISTENER for start game button***********//
 
 const startButton = document.querySelector('.startGameButton') // button that starts the whole game and gets player input values
@@ -138,7 +138,7 @@ restartButton.style.display = 'block'
 //**********EVENT LISTENER for restart game button**********// removes all player config information like name,score,tie, and symbol
 //and will reset the whole game back to beginning again. with new game button appearing.
 
-let restartButton = document.querySelector('.restartGameButton');
+
 
 restartButton.addEventListener('click', 
 
@@ -373,6 +373,10 @@ if (event.target.textContent === firstPlayer.symbol || event.target.textContent 
         numberOfGames = playAgainNumberOfGamesCounter
         let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
         gamesLeftToPlayCounter.textContent = numberOfGames
+
+        let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
+        for (let i=0; i < boardContainer.length; i++) {
+            boardContainer[i].textContent = '';} //reset container back to blank again for next game
     
   //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
         firstPlayer.scoreCount = 0
