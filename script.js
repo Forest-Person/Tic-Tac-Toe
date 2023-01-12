@@ -367,7 +367,8 @@ if (event.target.textContent === firstPlayer.symbol || event.target.textContent 
     }
 
     const startAgain = ()=>{
- 
+        document.querySelector('.lastGameResults').style.display = 'none'
+        document.querySelector('.finalGameWinner').style.display = 'none'
         document.querySelector('.ticTacToeGridContainer').style.display = 'grid'
         numberOfGames = playAgainNumberOfGamesCounter
         let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
