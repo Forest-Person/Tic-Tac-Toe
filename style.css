@@ -5,7 +5,7 @@
     --mint: rgb(185, 255, 248);
     --teal: rgb(111, 237, 214);
     --orange: rgb(255, 149, 81);
-    --red: rgb(255, 74, 74)
+    --red: rgb(247, 127, 127);
 }
 
 
@@ -45,7 +45,7 @@
 
 .headerTitleContainer{
 
-    background-color: var(--mint);
+    background-color: var(--red);
 
     display:flex;
     justify-content: center;
@@ -55,7 +55,7 @@
 
 .headerTitleContainer h1 {
 color: rgb(5, 62, 91);
-    background-color: var(--mint);
+    background-color: var(--red);
 }
 
 .newGameButton {
@@ -140,6 +140,16 @@ article.playerNamesConfigContainer {
     display: flex;
     align-items: center;
 
+}
+
+label  {
+
+    font-size:1.5rem;
+}
+
+input {
+
+    font-size: 1.5rem;
 }
 
 
