@@ -22,13 +22,23 @@ const boardObject = (() => {
 (    ()=>{
 
     //document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
-    document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
+    document.querySelector('.playerScoreBoard').style.display = 'flex' //make points display 'none'
     document.querySelector('.playerTurnIndicator').style.display = 'none'
     document.querySelector('.finalGameWinner').style.display = 'none'; //final game winner and tournament winner will be displayed at end of game
     document.querySelector('.lastGameResults').style.display = 'none';
     document.querySelector('.restartGameButton').style.display = 'none';
+    document.querySelector('.playerNamesConfigContainer').style.display = 'none';
+    
+    
+    
+    
     
 
+    
+    
+    
+    
+    
     ///*****EVENT LISTNER***** for new game button///
     document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
         

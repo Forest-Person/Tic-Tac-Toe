@@ -20,7 +20,7 @@
     padding: 0; 
     border: 0; 
     box-sizing: border-box;
-    border:2px solid red;
+    
     background-color:var(--mint);
 }
 
@@ -29,6 +29,7 @@
     grid-template-columns: repeat( 3, minmax(3rem, 5rem) );
     grid-template-rows: repeat( 3, minmax(3rem, 5rem) );
     justify-content: center;
+    padding-top:2rem;
     
 }
 
@@ -84,6 +85,8 @@ article.playerNamesConfigContainer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 5px solid teal;
+    padding: 1rem;
 
 }
 
@@ -106,7 +109,8 @@ article.playerNamesConfigContainer {
 }
 
 .startGameButton {
-
+    background-color: orange;
+    font-size: 1rem;
     margin:.5rem;
     padding:.3rem;
 }
@@ -117,6 +121,7 @@ article.playerNamesConfigContainer {
     gap: .5rem;
     flex-direction: column;
     align-items: center;
+    border: 2px solid var(--red);
     
 }
 
@@ -144,14 +149,15 @@ article.playerNamesConfigContainer {
 }
 
 label  {
-
+    
     font-size:1.5rem;
 }
 
 div input {
-    
+    width: 100%;
     text-align: center;
     font-size: 1.5rem;
+    border:2px solid var(--red);
 }
 
 div label {
@@ -166,6 +172,52 @@ input[type='radio']{
     height: 1.2rem;
     width: 1.5rem;
     accent-color: var(--orange);
+}
+
+.player1XorO > label {
+
+    border-bottom: 5px solid rgb(51, 0, 255);
+}
+
+.player2XorO > label {
+
+    border-bottom: 5px solid rgb(51, 0, 255);
+}
+
+/* restart Game button*/
+
+.restartGameButton {
+    display: flex;
+    justify-content: center;
+    padding:.5rem;
+    border: 2px solid rgb(88, 56, 53);
+    font-size: 1.5rem;
+    color: rgb(48, 36, 11);
+    background-color: var(--orange);
+    
+
+}
+
+.restartButtonContainer {
+
+    display: flex;
+    justify-content: center;
+    padding:1rem;
+}
+
+/* Player scoreboard container */
+
+.playerScoreBoard {
+
+border:2px solid red
+
+
+}
+
+.ticTacToeGridContainer > p {
+
+    border:3px solid green;
+    
 }
 
 
