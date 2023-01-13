@@ -42,6 +42,12 @@
     
 }
 
+.ticTacToeGridContainer > p {
+
+    border:3px solid green;
+    
+}
+
 /************HEADER************/
 
 .headerTitleContainer{
@@ -208,17 +214,38 @@ input[type='radio']{
 /* Player scoreboard container */
 
 .playerScoreBoard {
+display: flex;
+justify-content: space-between;
+border:2px solid rgb(4, 227, 134);
+padding-left: .5rem;
+padding-right: .5rem;
+padding-top: 1rem;
+padding-bottom: 1rem;
 
-border:2px solid red
 
 
 }
 
-.ticTacToeGridContainer > p {
+.playerScoreBoard > div {
 
-    border:3px solid green;
+    border:2px solid green;
+    padding:.5rem;
+}
+
+.playerScoreBoard div :first-child {
+
+    border-bottom: 2px solid blue;
+    font-size: 1.2rem;
     
 }
+
+.playerScoreBoard p {
+    padding:1rem
+}
+
+
+
+
 
 
 

@@ -192,14 +192,14 @@ restartButton.addEventListener('click',
  })();
 
         let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
-        player1ScoreDisplay.textContent = `Score = ${firstPlayer.scoreCount}`
+        player1ScoreDisplay.textContent = `Score: ${firstPlayer.scoreCount}`
         let player1TieCountDisplay = document.querySelector('.player1TieDisplay')
-        player1TieCountDisplay.textContent = `Tie = ${firstPlayer.tieCount}`
+        player1TieCountDisplay.textContent = `Tie: ${firstPlayer.tieCount}`
 
         let player2ScoreDisplay = document.querySelector('.player2ScoreDisplay')
-        player2ScoreDisplay.textContent = `Score = ${secondPlayer.scoreCount}`
+        player2ScoreDisplay.textContent = `Score: ${secondPlayer.scoreCount}`
         let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
-        player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
+        player2TieCountDisplay.textContent = `Tie: ${secondPlayer.tieCount}`
 
         let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
         gamesLeftToPlayCounter.textContent = numberOfGames
@@ -386,26 +386,26 @@ if (event.target.textContent === firstPlayer.symbol || event.target.textContent 
 
         let boardContainer = document.querySelectorAll('.ticTacToeGridContainer > p')
         for (let i=0; i < boardContainer.length; i++) {
-            boardContainer[i].textContent = '';} //reset container back to blank again for next game
+            boardContainer[i].textContent = '';} //reset container for next game
     
-  //Below is an IIFE to choose which player goes first and assigns the player1 or player2 objets to either first player or second player
+  
         firstPlayer.scoreCount = 0
         secondPlayer.scoreCount = 0
         firstPlayer.tieCount = 0
         secondPlayer.scoreCount = 0
-        document.querySelector('.playerScoreBoard').style.display = 'flex' //make points display 'none'
+        document.querySelector('.playerScoreBoard').style.display = 'flex' 
         document.querySelector('.playerTurnIndicator').style.display = 'flex'
  
 
         let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
-        player1ScoreDisplay.textContent = `Score = ${firstPlayer.scoreCount}`
+        player1ScoreDisplay.textContent = `Score: ${firstPlayer.scoreCount}`
         let player1TieCountDisplay = document.querySelector('.player1TieDisplay')
-        player1TieCountDisplay.textContent = `Tie = ${firstPlayer.tieCount}`
+        player1TieCountDisplay.textContent = `Tie: ${firstPlayer.tieCount}`
 
         let player2ScoreDisplay = document.querySelector('.player2ScoreDisplay')
-        player2ScoreDisplay.textContent = `Score = ${secondPlayer.scoreCount}`
+        player2ScoreDisplay.textContent = `Score: ${secondPlayer.scoreCount}`
         let player2TieCountDisplay = document.querySelector('.player2TieDisplay')
-        player2TieCountDisplay.textContent = `Tie = ${secondPlayer.tieCount}`
+        player2TieCountDisplay.textContent = `Tie: ${secondPlayer.tieCount}`
 
 
 
