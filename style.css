@@ -76,7 +76,7 @@ color: rgb(5, 62, 91);
     background-color: var(--orange);
 }
 
-/**********Player names config container**********/
+/********** Player names config container **********/
 
 article.playerNamesConfigContainer {
 
@@ -91,6 +91,7 @@ article.playerNamesConfigContainer {
 
     display: grid;
     grid-template-columns: 1fr;
+    
     
     
 }
@@ -147,10 +148,29 @@ label  {
     font-size:1.5rem;
 }
 
-input {
-
+div input {
+    
+    text-align: center;
     font-size: 1.5rem;
 }
+
+div label {
+
+    display:flex;
+    justify-content: center;
+}
+
+input[type='radio']{
+
+    border: 0px;
+    height: 1.2rem;
+    width: 1.5rem;
+    accent-color: var(--orange);
+}
+
+
+
+
 
 
 
