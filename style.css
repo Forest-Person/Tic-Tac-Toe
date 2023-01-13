@@ -1,4 +1,19 @@
+/* Default colors themes vars */
+
+:root {
+
+    --mint: rgb(185, 255, 248);
+    --teal: rgb(111, 237, 214);
+    --orange: rgb(255, 149, 81);
+    --red: rgb(255, 74, 74)
+}
+
+
+
+
 /* Remove padding and margin for default styles */ 
+
+
 *
     { 
     margin: 0; 
@@ -6,7 +21,7 @@
     border: 0; 
     box-sizing: border-box;
     border:2px solid red;
-    background-color:rgb(255, 195, 161) ;
+    background-color:var(--mint);
 }
 
 .ticTacToeGridContainer {
@@ -30,23 +45,24 @@
 
 .headerTitleContainer{
 
-    background-color: rgb(167, 93, 93);
+    background-color: var(--mint);
 
     display:flex;
     justify-content: center;
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
     
 }
 
 .headerTitleContainer h1 {
-color: rgb(236, 226, 226);
-    background-color: rgb(167, 93, 93);
+color: rgb(5, 62, 91);
+    background-color: var(--mint);
 }
 
 .newGameButton {
 
     display: flex;
     justify-content: center;
+    padding: 1rem;
 }
 
 .newGameButton button{
@@ -55,9 +71,9 @@ color: rgb(236, 226, 226);
     justify-content: center;
     padding:.5rem;
     border: 2px solid rgb(88, 56, 53);
-    font-size: 2rem;
-    color: rgb(90, 46, 46);
-    background-color: rgb(240, 153, 125);
+    font-size: 1.5rem;
+    color: rgb(48, 36, 11);
+    background-color: var(--orange);
 }
 
 /**********Player names config container**********/
@@ -74,8 +90,12 @@ article.playerNamesConfigContainer {
 .playerNameInputs {
 
     display: grid;
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
+    
+    
 }
+
+
 
 .gameNumberChoiceStartNewGame {
     padding:1rem;
@@ -91,9 +111,9 @@ article.playerNamesConfigContainer {
 }
 
 .player1XorO {
-    padding:.5rem;
+    padding:.1rem;
     display:flex;
-    justify-content: center;
+    gap: .5rem;
     flex-direction: column;
     align-items: center;
     
@@ -101,11 +121,11 @@ article.playerNamesConfigContainer {
 
 .player2XorO {
     
-    padding:.5rem;
+    padding:.1rem;
     display:flex;
-    
     flex-direction: column;
     align-items: center;
+    gap: .5rem;
     
 }
 
@@ -121,4 +141,6 @@ article.playerNamesConfigContainer {
     align-items: center;
 
 }
+
+
 
