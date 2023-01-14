@@ -294,12 +294,12 @@ let slotsLeft = 9 // number to track how many slots have been played
                 document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
                 document.querySelector('.playerTurnIndicator').style.display = 'none'
                 document.querySelector('.finalGameWinner').style.display = 'block';
-                document.querySelector('.finalGameWinner').textContent = `Congrats ${firstPlayer.playerName} YOU WON The Tournament!`
+                document.querySelector('.finalGameWinner').textContent = `${firstPlayer.playerName} WON The Tournament!`
                 document.querySelector('.ticTacToeGridContainer').style.display = 'none'
             }else if(firstPlayer.scoreCount < secondPlayer.scoreCount) {
                 
                 document.querySelector('.finalGameWinner').style.display = 'block';
-                document.querySelector('.finalGameWinner').textContent = `Congrats ${secondPlayer.playerName} YOU WON The Tournament!`
+                document.querySelector('.finalGameWinner').textContent = `${secondPlayer.playerName} WON The Tournament!`
                 document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
                 document.querySelector('.playerTurnIndicator').style.display = 'none'
                 document.querySelector('.ticTacToeGridContainer').style.display = 'none'

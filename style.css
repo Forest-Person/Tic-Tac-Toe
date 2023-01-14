@@ -280,6 +280,17 @@ padding-bottom: 1rem;
 
 }
 
+.gameResultsDisplay {
+
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    padding:.5rem;
+    
+}
+
 
 
 
