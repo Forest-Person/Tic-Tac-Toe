@@ -215,7 +215,7 @@ input[type='radio']{
 
 .playerScoreBoard {
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 border:2px solid rgb(4, 227, 134);
 padding-left: .5rem;
 padding-right: .5rem;

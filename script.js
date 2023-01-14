@@ -1,54 +1,7 @@
 /******Tic Tac Toe Game******/
+
+
 "use strict"
-
-const boardObject = (() => {
-
-    const board = ['' ,'' ,'' 
-                   
-                   ,'' ,'' ,''
-                   
-                   ,'' ,'','' ];
-  
-    return {board} 
-  
-  })();
-
-  //boardObject.board.splice(4,1,'o'); example using splice method to remove element and replace with 'O'
-  //the first argument is the index, the second argument is how many elements to remove the third optional argument is the item to add
-  //splice(start, deleteCount, item1, item2, itemN)
-  
-
-
-(    ()=>{
-
-    //document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
-    document.querySelector('.playerScoreBoard').style.display = 'flex' //make points display 'none'
-    document.querySelector('.playerTurnIndicator').style.display = 'none'
-    document.querySelector('.finalGameWinner').style.display = 'none'; //final game winner and tournament winner will be displayed at end of game
-    document.querySelector('.lastGameResults').style.display = 'none';
-    document.querySelector('.restartGameButton').style.display = 'none';
-    document.querySelector('.playerNamesConfigContainer').style.display = 'none';
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    ///*****EVENT LISTNER***** for new game button///
-    document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
-        
-        document.querySelector('.playerNamesConfigContainer').style.display = 'flex';
-        document.querySelector('.newGameButton').style.display = 'none';
-    
-    })
-})();       //IIFE that upon click will create the player config seciton. when startnewgame button is clicked the section and new game button go away.
-    
-
 
 
 const PlayerObject = (playerName,symbol) => {
@@ -67,9 +20,26 @@ const PlayerObject = (playerName,symbol) => {
     };
 }
 
-//as per "Barmars" advice on stackoverflow it is okay to create playerobject varibales
-//using let but leave them un initizliized until the newgame config function call//
-//where they become the actual playerobject. remember to look out for implicit global variables
+(()=>{
+
+    //document.querySelector('.playerNamesConfigContainer').style.display = 'none' //make player config section 'none'
+    document.querySelector('.playerScoreBoard').style.display = 'none' //make points display 'none'
+    document.querySelector('.playerTurnIndicator').style.display = 'none'
+    document.querySelector('.finalGameWinner').style.display = 'none'; //final game winner and tournament winner will be displayed at end of game
+    document.querySelector('.lastGameResults').style.display = 'none';
+    document.querySelector('.restartGameButton').style.display = 'none';
+    document.querySelector('.playerNamesConfigContainer').style.display = 'none';
+    
+
+    ///*****EVENT LISTNER***** for new game button///
+    document.querySelector('.newGameButton').addEventListener('click', ()=>{ //event listener for the new game button that adds player config section and removes new game button on click of new game start button
+        
+        document.querySelector('.playerNamesConfigContainer').style.display = 'flex';
+        document.querySelector('.newGameButton').style.display = 'none';
+    
+    })
+})();       //IIFE that upon click will create the player config seciton. when startnewgame button is clicked the section and new game button go away.
+    
 
 //********* GLOBALS ***********//
 
@@ -100,12 +70,19 @@ function newGameConfig()  {
     numberOfGames = document.querySelector('.numberOfRoundsChoice').value;
     playAgainNumberOfGamesCounter = document.querySelector('.numberOfRoundsChoice').value;
     //Condition below checks if any of the forms are blank and creates alert if they are
-      if (numberOfGames === '' || player1Name === '' || player2Name === '' || p1Symbol === '' || p2Symbol === '') {return alert('Form must be filled out to start game.')};
+      if (numberOfGames === '' || player1Name === '' || player2Name === '' || p1Symbol === null || p2Symbol === null){
+        alert('Form must be completely filled out')
+        
+        return};
     
     player1 = PlayerObject(player1Name,p1Symbol);
     player2 = PlayerObject(player2Name,p2Symbol);
 
-    if (player1.symbol === player2.symbol){ return alert('Each player must choose their own symbol.')}
+    if (player1.symbol === player2.symbol){ 
+        
+        alert('Each player must choose their own symbol.')
+        
+        return }
 
     document.querySelector('.player1Inputs').reset();
     document.querySelector('.player2Inputs').reset();//reset form values on press of start button
@@ -125,6 +102,7 @@ function newGameConfig()  {
     for (let i=0; i < boardContainer.length; i++) {
         boardContainer[i].textContent = '';
     }
+    restartButton.style.display = 'block'
     gameFlow();
 }
 
@@ -135,7 +113,7 @@ const startButton = document.querySelector('.startGameButton') // button that st
 
 startButton.addEventListener('click' , (event)=>{
 event.preventDefault();
-restartButton.style.display = 'block'
+
     newGameConfig();
     
     //start new game function goes here
