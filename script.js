@@ -29,6 +29,7 @@ const PlayerObject = (playerName,symbol) => {
     document.querySelector('.lastGameResults').style.display = 'none';
     document.querySelector('.restartGameButton').style.display = 'none';
     document.querySelector('.playerNamesConfigContainer').style.display = 'none';
+    document.querySelector('.startGameButton').style.display = 'none'
     
 
     ///*****EVENT LISTNER***** for new game button///
@@ -40,6 +41,25 @@ const PlayerObject = (playerName,symbol) => {
     })
 })();       //IIFE that upon click will create the player config seciton. when startnewgame button is clicked the section and new game button go away.
     
+
+/********EVENT LISTENER **********/ //Tracks inputs into the playerconfig container and wont let start game button appear until all forms filled out.
+
+document.querySelectorAll("input").forEach((item)=>item.addEventListener('input', (e)=>{
+
+
+    let  player1Name =document.querySelector('.p1Name').value;
+
+    let  player2Name = document.querySelector('.p2Name').value;
+
+    let numberOfGames = document.querySelector('.numberOfRoundsChoice').value;
+    console.log(e)
+
+if (numberOfGames === '' || player1Name === '' || player2Name === ''){
+    document.querySelector('.startGameButton').style.display = 'none'
+    
+}else{document.querySelector('.startGameButton').style.display = 'flex'};
+
+}))
 
 //********* GLOBALS ***********//
 
@@ -69,11 +89,7 @@ function newGameConfig()  {
 
     numberOfGames = document.querySelector('.numberOfRoundsChoice').value;
     playAgainNumberOfGamesCounter = document.querySelector('.numberOfRoundsChoice').value;
-    //Condition below checks if any of the forms are blank and creates alert if they are
-      if (numberOfGames === '' || player1Name === '' || player2Name === '' || p1Symbol === null || p2Symbol === null){
-        alert('Form must be completely filled out')
-        
-        return};
+    
     
     player1 = PlayerObject(player1Name,p1Symbol);
     player2 = PlayerObject(player2Name,p2Symbol);
@@ -82,7 +98,7 @@ function newGameConfig()  {
         
         alert('Each player must choose their own symbol.')
         
-        return }
+        return }else{
 
     document.querySelector('.player1Inputs').reset();
     document.querySelector('.player2Inputs').reset();//reset form values on press of start button
@@ -103,7 +119,7 @@ function newGameConfig()  {
         boardContainer[i].textContent = '';
     }
     restartButton.style.display = 'block'
-    gameFlow();
+    gameFlow();}
 }
 
 let restartButton = document.querySelector('.restartGameButton');
