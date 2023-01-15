@@ -52,7 +52,7 @@ document.querySelectorAll("input").forEach((item)=>item.addEventListener('input'
     let  player2Name = document.querySelector('.p2Name').value;
 
     let numberOfGames = document.querySelector('.numberOfRoundsChoice').value;
-    console.log(e)
+    
 
 if (numberOfGames === '' || player1Name === '' || player2Name === ''){
     document.querySelector('.startGameButton').style.display = 'none'
@@ -206,8 +206,8 @@ restartButton.addEventListener('click',
 
         let gamesLeftToPlayCounter = document.querySelector('.gamesLeftCounter')
         gamesLeftToPlayCounter.textContent = numberOfGames
-let player1Turn = true //flag to tell whether its player 1 turn or not
-let slotsLeft = 9 // number to track how many slots have been played
+        let player1Turn = true //flag to tell whether its player 1 turn or not
+        let slotsLeft = 9 // number to track how many slots have been played
 
 //player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
      //light up player1 turn indicator
@@ -288,7 +288,7 @@ let slotsLeft = 9 // number to track how many slots have been played
     
      checkWinner(secondPlayer, secondPlayer.symbol) 
      
-     console.log(slotsLeft,winFlag)
+     
 
 
         if (numberOfGames === 0){ //logic for displaying final game results in .finalgameresults class element in html
