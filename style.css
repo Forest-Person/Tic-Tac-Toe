@@ -284,12 +284,28 @@ padding-bottom: 1rem;
 
     display: flex;
     flex-wrap: wrap;
-    font-size: 1rem;
+    font-size: 2rem;
     justify-content: space-around;
     align-items: center;
     padding:.5rem;
+    flex-direction: column;
+    gap:3rem;
+    margin-top:3rem;
+    animation: glow 2s ease-in-out infinite alternate;
+    text-transform: capitalize;
+
     
 }
+
+@keyframes glow {
+    from {
+      text-shadow: 0 0 20px #0cf11f;
+    }
+    to {
+      text-shadow: 0 0 30px #0c2ce0, 0 0 10px #07cee4;
+    }
+  }
+
 
 
 
