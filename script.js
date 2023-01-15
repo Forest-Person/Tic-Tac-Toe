@@ -170,7 +170,10 @@ restartButton.addEventListener('click',
   let player1ScoreBoardName = document.querySelector('.player1ScoreBoardNameDisplay')
   let player2ScoreBoardName = document.querySelector('.player2ScoreBoardNameDisplay')
   if (choosePlayer === 0) { firstPlayer = player1; secondPlayer = player2;
-
+    let firstNameLetterCapitalized = firstPlayer.playerName.charAt(0).toUpperCase() + firstPlayer.playerName.slice(1)
+    let secondNameLetterCapitalized = secondPlayer.playerName.charAt(0).toUpperCase() + secondPlayer.playerName.slice(1)
+    firstPlayer.playerName = firstNameLetterCapitalized
+    secondPlayer.playerName = secondNameLetterCapitalized
     player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
     player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!` //determines which player turn it is
     player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
@@ -178,11 +181,17 @@ restartButton.addEventListener('click',
     player2ScoreBoardName.textContent = `${secondPlayer.playerName}`
 
 }else if (choosePlayer === 1){ firstPlayer = player2; secondPlayer = player1;
+    let firstNameLetterCapitalized = firstPlayer.playerName.charAt(0).toUpperCase() + firstPlayer.playerName.slice(1)
+    let secondNameLetterCapitalized = secondPlayer.playerName.charAt(0).toUpperCase() + secondPlayer.playerName.slice(1)
+    firstPlayer.playerName = firstNameLetterCapitalized
+    secondPlayer.playerName = secondNameLetterCapitalized
     player1TurnIndicator.style.cssText = "box-shadow:0 0 10px 6px #f0f;"
     player1TurnIndicator.textContent = `${firstPlayer.playerName} You are ${firstPlayer.symbol} GO!` //which player turn
     player2TurnIndicator.textContent = `${secondPlayer.playerName} You are ${secondPlayer.symbol} GO!`
     player1ScoreBoardName.textContent = `${firstPlayer.playerName}` //update player name display on score board
     player2ScoreBoardName.textContent = `${secondPlayer.playerName}`}
+
+
  })();
 
         let player1ScoreDisplay = document.querySelector('.player1ScoreDisplay')
